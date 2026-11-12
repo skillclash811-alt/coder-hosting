@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournament Application</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body {
+            padding-top: 70px; /* Adjust based on navbar height */
+            background-color: #f8f9fa;
+        }
+        .auth-container, .app-container {
+            max-width: 500px;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        #loggedInSection {
+            display: none; /* Initially hidden */
+        }
+        #emailSignupForm {
+            display: none; /* Initially hidden */
+        }
+        .user-info {
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        .navbar {
+            background-color: #343a40 !important; /* Dark navbar */
+        }
+        .navbar-brand, .nav-link {
+             color: #ffffff !important;
+        }
+        .btn-google {
+            background-color: #db4437;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%; /* Make Google button full width */
+        }
+        .btn-google:hover {
+            background-color: #c33d2e;
+            color: white;
+        }
+        /* Simple icon placeholder */
+        .google-icon::before {
+            content: 'G';
+            font-weight: bold;
+            margin-right: 5px;
+            background-color: white;
+            color: #db4437;
+            padding: 2px 5px;
+            border-radius: 2px;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .auth-form h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .switch-auth-link {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            cursor: pointer;
+        }
+        .or-separator {
+            text-align: center;
+            margin: 1.5rem 0;
+            font-weight: bold;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Tournament App</a>
+            <div class="d-flex align-items-center">
+                 <span id="userInfoNav" class="navbar-text user-info me-3" style="color: white;"></span>
+                <button class="btn btn-danger d-none" id="logoutBtnNav">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <!-- Auth Section (Login/Signup) -->
+        <div id="authSection" class="auth-container">
+
+            <!-- Email/Password Login Form -->
+            <div id="emailLoginForm" class="auth-form">
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email address</label>
+                        <input type="email" class="form-control" id="loginEmail" placeholder="Enter email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
+                    </div>
+                    <button type="submit" id="loginBtn" class="btn btn-primary w-100">Login</button>
+                    <p id="loginError" class="text-danger mt-2 text-center"></p>
+                </form>
+
+                <div class="or-separator">OR</div>
+
+                <button id="googleLoginBtn" class="btn btn-google mb-3">
+                    <span class="google-icon"></span> Sign in with Google
+                </button>
+
+                <a id="showSignup" class="switch-auth-link">Don't have an account? Sign Up</a>
+            </div>
+
+            <!-- Email/Password Signup Form -->
+            <div id="emailSignupForm" class="auth-form">
+                 <h2>Sign Up</h2>
+                 <form id="signupForm">
+                     <div class="form-group">
+                         <label for="signupEmail">Email address</label>
+                         <input type="email" class="form-control" id="signupEmail" placeholder="Enter email" required>
+                     </div>
+                     <div class="form-group">
+                         <label for="signupPassword">Password</label>
+                         <input type="password" class="form-control" id="signupPassword" placeholder="Password (min. 6 characters)" required>
+                         <!-- Optional: Add confirm password field -->
+                     </div>
+                     <button type="submit" id="signupBtn" class="btn btn-success w-100">Sign Up</button>
+                     <p id="signupError" class="text-danger mt-2 text-center"></p>
+                 </form>
+                  <a id="showLogin" class="switch-auth-link">Already have an account? Login</a>
+             </div>
+
+        </div>
+
+        <!-- Logged In Section / App Content -->
+        <div id="loggedInSection" class="app-container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                 <h3 id="welcomeMessage">Welcome!</h3>
+                 <!-- Logout button is in the navbar -->
+            </div>
+
+            <h4>Tournament Dashboard</h4>
+            <p>Here you can view upcoming tournaments, register, or manage your participation.</p>
+            <div id="tournamentContent">
+                <p>Loading tournament information...</p>
+                 <ul class="list-group">
+                  <li class="list-group-item">Upcoming Tournament Alpha (Details coming soon)</li>
+                  <li class="list-group-item">Past Tournament Beta (Results available)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import {
+            getAuth,
+            GoogleAuthProvider,
+            signInWithPopup,
+            createUserWithEmailAndPassword, // Added for signup
+            signInWithEmailAndPassword,   // Added for login
+            signOut,
+            onAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        // Optional:
+        // import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+        // import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+
+        // ======================================================================
+        // === আপনার ফায়ারবেস কনফিগারেশন এখানে বসান / REPLACE WITH YOUR CONFIG ===
+        // ======================================================================
+        // নিচের অবজেক্টটিতে আপনার নিজের ফায়ারবেস প্রোজেক্টের তথ্য দিয়ে পূরণ করুন।
+        // এই তথ্যগুলো আপনি আপনার ফায়ারবেস কনসোল (Firebase Console) থেকে পাবেন।
+        // Project Settings -> General -> Your apps -> Web app -> SDK setup and configuration -> Config
+        // ======================================================================
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY", // আপনার API Key এখানে বসান
+            authDomain: "YOUR_AUTH_DOMAIN", // আপনার Auth Domain এখানে বসান (e.g., project-id.firebaseapp.com)
+            databaseURL: "YOUR_DATABASE_URL", // যদি Realtime Database ব্যবহার করেন (Optional)
+            projectId: "YOUR_PROJECT_ID", // আপনার Project ID এখানে বসান
+            storageBucket: "YOUR_STORAGE_BUCKET", // যদি Storage ব্যবহার করেন (Optional)
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID", // যদি Messaging ব্যবহার করেন (Optional)
+            appId: "YOUR_APP_ID", // আপনার App ID এখানে বসান
+            measurementId: "YOUR_MEASUREMENT_ID" // যদি Analytics ব্যবহার করেন (Optional)
+        };
+        // ======================================================================
+        // === কনফিগারেশন রিপ্লেসমেন্ট শেষ / END OF CONFIG REPLACEMENT AREA ===
+        // ======================================================================
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const googleProvider = new GoogleAuthProvider(); // Renamed for clarity
+        // Optional: const database = getDatabase(app);
+        // Optional: const analytics = getAnalytics(app);
+
+        // DOM Elements
+        const authSection = document.getElementById('authSection');
+        const loggedInSection = document.getElementById('loggedInSection');
+        const userInfoNav = document.getElementById('userInfoNav');
+        const logoutBtnNav = document.getElementById('logoutBtnNav');
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        const tournamentContent = document.getElementById('tournamentContent');
+
+        // Auth Forms Elements
+        const emailLoginForm = document.getElementById('emailLoginForm');
+        const emailSignupForm = document.getElementById('emailSignupForm');
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const loginEmailInput = document.getElementById('loginEmail');
+        const loginPasswordInput = document.getElementById('loginPassword');
+        const signupEmailInput = document.getElementById('signupEmail');
+        const signupPasswordInput = document.getElementById('signupPassword');
+        const loginBtn = document.getElementById('loginBtn');
+        const signupBtn = document.getElementById('signupBtn');
+        const googleLoginBtn = document.getElementById('googleLoginBtn');
+        const showSignupLink = document.getElementById('showSignup');
+        const showLoginLink = document.getElementById('showLogin');
+        const loginError = document.getElementById('loginError');
+        const signupError = document.getElementById('signupError');
+
+
+        // --- Form Switching Logic ---
+        showSignupLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            emailLoginForm.style.display = 'none';
+            emailSignupForm.style.display = 'block';
+            clearErrors(); // Clear errors when switching
+        });
+
+        showLoginLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            emailSignupForm.style.display = 'none';
+            emailLoginForm.style.display = 'block';
+            clearErrors(); // Clear errors when switching
+        });
+
+        function clearErrors() {
+            loginError.textContent = '';
+            signupError.textContent = '';
+        }
+
+
+        // --- Authentication Logic ---
+
+        // Email/Password Sign Up
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent form submission
+            const email = signupEmailInput.value;
+            const password = signupPasswordInput.value;
+            signupError.textContent = ''; // Clear previous errors
+
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Signed up successfully
+                    const user = userCredential.user;
+                    console.log("User signed up:", user);
+                    // UI update is handled by onAuthStateChanged
+                    // Optionally clear form fields
+                    signupForm.reset();
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = mapAuthCodeToMessage(errorCode, error.message);
+                    console.error("Signup Error:", errorCode, errorMessage);
+                    signupError.textContent = errorMessage;
+                });
+        });
+
+        // Email/Password Login
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent form submission
+            const email = loginEmailInput.value;
+            const password = loginPasswordInput.value;
+            loginError.textContent = ''; // Clear previous errors
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Signed in successfully
+                    const user = userCredential.user;
+                    console.log("User logged in:", user);
+                    // UI update is handled by onAuthStateChanged
+                    loginForm.reset();
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                     const errorMessage = mapAuthCodeToMessage(errorCode, error.message);
+                    console.error("Login Error:", errorCode, errorMessage);
+                    loginError.textContent = errorMessage;
+                });
+        });
+
+        // Google Sign-In
+        googleLoginBtn.addEventListener('click', () => {
+            clearErrors(); // Clear email/password errors
+            signInWithPopup(auth, googleProvider)
+                .then((result) => {
+                    const user = result.user;
+                    console.log("User signed in with Google:", user);
+                    // UI update handled by onAuthStateChanged
+                }).catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = mapAuthCodeToMessage(errorCode, error.message);
+                    console.error("Google Sign-In Error:", errorCode, errorMessage);
+                    // Display Google error on the login form's error area
+                    loginError.textContent = `Google Login Failed: ${errorMessage}`;
+                });
+        });
+
+        // Sign Out
+        logoutBtnNav.addEventListener('click', () => {
+            signOut(auth).then(() => {
+                console.log("User signed out");
+                // UI update is handled by onAuthStateChanged
+            }).catch((error) => {
+                console.error("Sign Out Error:", error);
+                alert("Error signing out. Please try again.");
+            });
+        });
+
+        // --- Auth State Observer ---
+        onAuthStateChanged(auth, (user) => {
+            clearErrors(); // Clear any lingering errors on auth change
+            if (user) {
+                // User is signed in
+                console.log("Auth state changed: User is signed in", user);
+                const displayName = user.displayName || user.email; // Use email if display name isn't set (common for email/pass)
+
+                // Update UI for logged-in state
+                authSection.style.display = 'none'; // Hide the entire auth container
+                loggedInSection.style.display = 'block';
+                logoutBtnNav.classList.remove('d-none'); // Show navbar logout button
+
+                userInfoNav.textContent = `Hi, ${displayName}!`;
+                welcomeMessage.textContent = `Welcome, ${displayName}!`;
+
+                loadTournamentData(user); // Load app data
+
+            } else {
+                // User is signed out
+                console.log("Auth state changed: User is signed out");
+
+                // Update UI for logged-out state
+                loggedInSection.style.display = 'none';
+                authSection.style.display = 'block'; // Show the auth container
+                emailSignupForm.style.display = 'none'; // Ensure signup form is hidden by default
+                emailLoginForm.style.display = 'block';  // Ensure login form is shown by default
+                logoutBtnNav.classList.add('d-none'); // Hide navbar logout button
+                userInfoNav.textContent = ''; // Clear user info in navbar
+
+                // Optionally clear form fields on logout
+                loginForm.reset();
+                signupForm.reset();
+            }
+        });
+
+        // --- Placeholder Function for Tournament Data ---
+        function loadTournamentData(user) {
+             console.log("Placeholder: Loading data for user:", user.uid);
+             // Fetch data from Firebase DB/Firestore based on user.uid here
+             // Example:
+             // tournamentContent.innerHTML = '<p>Fetching your tournament info...</p>';
+             // get(ref(database, `userTournaments/${user.uid}`)).then(...)
+        }
+
+         // --- Helper Function for User-Friendly Error Messages ---
+        function mapAuthCodeToMessage(errorCode, defaultMessage) {
+            switch (errorCode) {
+                case 'auth/invalid-email':
+                    return 'Please enter a valid email address.';
+                case 'auth/user-not-found':
+                case 'auth/wrong-password':
+                 case 'auth/invalid-credential': // Often returned for both wrong user/pass in newer SDKs
+                    return 'Incorrect email or password. Please try again.';
+                case 'auth/email-already-in-use':
+                    return 'This email address is already registered. Please login or use a different email.';
+                case 'auth/weak-password':
+                    return 'Password is too weak. It should be at least 6 characters long.';
+                case 'auth/operation-not-allowed':
+                    return 'Email/password sign-in is not enabled in Firebase console.';
+                case 'auth/popup-closed-by-user':
+                     return 'Google sign-in popup was closed before completing.';
+                case 'auth/cancelled-popup-request':
+                    return 'Cancelled multiple Google sign-in requests.';
+                 // Add more specific cases as needed
+                default:
+                    return defaultMessage || 'An unknown authentication error occurred.';
+            }
+        }
+
+    </script>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
