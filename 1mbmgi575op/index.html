@@ -1,0 +1,2088 @@
+<!doctype html>
+<html dir='ltr'>
+    <head>
+        <!--====== USEFULL META ======-->
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="description" content="SkillClash – India’s Best Tournament App | Play & Earn" />
+<meta name="keywords" content="
+SkillClash – India’s Best Tournament App | Play & Earn" />
+
+<!--====== TITLE TAG ======-->
+<title>SkillClash – India’s Best Tournament App | Play & Earn | SKILL CLASH</title>
+
+<!--====== FAVICON ICON =======-->
+<link rel="shortcut icon" type="image/ico" href="https://skillclash.site/uploads/company_favicon/thumb/40x40_202412211112251753016345__Picsart_24-12-21_11-12-12-113.png" />
+
+<!--====== STYLESHEETS ======-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="https://skillclash.site/application/views/themes/front/assest/css/animate.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet">
+
+<!--====== MAIN STYLESHEETS ======-->
+<link href="https://skillclash.site/application/views/themes/front/assest/css/style.min.css" rel="stylesheet">
+
+<!--====== GOOGLE FONTS ======-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!--====== TAILWIND PLAY CDN ======-->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: 'oklch(0.52 0.24 285)',
+          gold: 'oklch(0.82 0.16 82)',
+          success: 'oklch(0.72 0.18 149)',
+          ink: 'oklch(0.14 0 0)',
+          surface: 'oklch(0.98 0 0)',
+          hairline: 'oklch(0.92 0 0)',
+          background: 'oklch(1 0 0)',
+          foreground: 'oklch(0.14 0 0)',
+          card: 'oklch(1 0 0)',
+          'card-foreground': 'oklch(0.14 0 0)',
+          popover: 'oklch(1 0 0)',
+          'popover-foreground': 'oklch(0.14 0 0)',
+          primary: 'oklch(0.14 0 0)',
+          'primary-foreground': 'oklch(1 0 0)',
+          secondary: 'oklch(0.97 0 0)',
+          'secondary-foreground': 'oklch(0.14 0 0)',
+          muted: 'oklch(0.97 0 0)',
+          'muted-foreground': 'oklch(0.45 0 0)',
+          accent: 'oklch(0.97 0 0)',
+          'accent-foreground': 'oklch(0.14 0 0)',
+          border: 'oklch(0.92 0 0)',
+          input: 'oklch(0.92 0 0)',
+          ring: 'oklch(0.52 0.24 285)',
+        },
+        fontFamily: {
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          display: ['Outfit', 'Inter', 'system-ui', 'sans-serif'],
+        },
+        boxShadow: {
+          soft: '0 1px 2px oklch(0 0 0 / 0.04), 0 8px 24px oklch(0 0 0 / 0.06)',
+          lift: '0 2px 4px oklch(0 0 0 / 0.04), 0 20px 40px -12px oklch(0 0 0 / 0.12)',
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+/* Premium Redesign Custom Styles */
+.hero-gradient {
+  background:
+    radial-gradient(1200px 600px at 85% -10%, oklch(0.82 0.16 82 / 0.14), transparent 60%),
+    radial-gradient(900px 500px at 10% 10%, oklch(0.52 0.24 285 / 0.14), transparent 60%),
+    radial-gradient(700px 400px at 50% 100%, oklch(0.52 0.24 285 / 0.08), transparent 70%),
+    #fff;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(oklch(0 0 0 / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0 0 0 / 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+.text-gradient-brand {
+  background: linear-gradient(135deg, oklch(0.14 0 0), oklch(0.52 0.24 285) 60%, oklch(0.82 0.16 82));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, oklch(0.82 0.16 82), oklch(0.7 0.14 60));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.container-x {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+@media (min-width: 640px) {
+  .container-x {
+    max-width: 640px;
+  }
+}
+@media (min-width: 768px) {
+  .container-x {
+    max-width: 768px;
+  }
+}
+@media (min-width: 1024px) {
+  .container-x {
+    max-width: 1024px;
+  }
+}
+@media (min-width: 1280px) {
+  .container-x {
+    max-width: 1200px;
+  }
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+}
+
+.card-premium {
+  background: #fff;
+  border: 1px solid oklch(0.92 0 0);
+  border-radius: 1.5rem;
+  box-shadow: 0 1px 2px oklch(0 0 0 / 0.04), 0 8px 24px oklch(0 0 0 / 0.06);
+  transition: transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 300ms, border-color 300ms;
+}
+
+.card-premium-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 2px 4px oklch(0 0 0 / 0.04), 0 20px 40px -12px oklch(0 0 0 / 0.12);
+  border-color: color-mix(in oklab, oklch(0.52 0.24 285) 30%, oklch(0.92 0 0));
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, oklch(0.2 0 0), oklch(0.1 0 0));
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+  box-shadow: 0 8px 24px -8px oklch(0 0 0 / 0.4), inset 0 1px 0 oklch(1 0 0 / 0.12);
+  transition: transform 200ms, box-shadow 200ms, filter 200ms;
+  text-decoration: none;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 14px 32px -10px oklch(0 0 0 / 0.5), inset 0 1px 0 oklch(1 0 0 / 0.2);
+  color: #fff !important;
+}
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: 9999px;
+  background: #fff;
+  color: oklch(0.14 0 0);
+  border: 1px solid oklch(0.92 0 0);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 200ms, border-color 200ms, background 200ms;
+  text-decoration: none;
+}
+.btn-secondary:hover {
+  border-color: oklch(0.52 0.24 285 / 0.4);
+  background: oklch(0.52 0.24 285 / 0.04);
+  color: oklch(0.14 0 0) !important;
+}
+
+.btn-brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, oklch(0.52 0.24 285), oklch(0.42 0.22 280));
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 20px 60px -20px oklch(0.52 0.24 285 / 0.55);
+  transition: transform 200ms, filter 200ms;
+  text-decoration: none;
+}
+.btn-brand:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+  color: #fff !important;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid oklch(0.92 0 0);
+  background: #fff;
+  color: oklch(0.14 0 0);
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 oklch(0.72 0.18 149 / 0.6); }
+  70% { box-shadow: 0 0 0 12px oklch(0.72 0.18 149 / 0); }
+  100% { box-shadow: 0 0 0 0 oklch(0.72 0.18 149 / 0); }
+}
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+.animate-float { animation: float-y 6s ease-in-out infinite; }
+.animate-pulse-ring { animation: pulse-ring 2s infinite; }
+.animate-spin-slow { animation: spin-slow 24s linear infinite; }
+
+/* Counter value span — inherits gradient from parent */
+.counter-value {
+  display: inline;
+  background: inherit;
+  -webkit-background-clip: inherit;
+  background-clip: inherit;
+  color: inherit;
+}
+
+/* Dark-section chip override (Bootstrap-proof) */
+.chip-white {
+  background: rgba(255,255,255,0.10) !important;
+  border-color: rgba(255,255,255,0.20) !important;
+  color: #fff !important;
+}
+
+/* Ghost white button for dark sections */
+.btn-ghost-white {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.10) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.20) !important;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 200ms;
+  text-decoration: none;
+}
+.btn-ghost-white:hover {
+  background: rgba(255,255,255,0.20) !important;
+  color: #fff !important;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: oklch(1 0 0);
+  color: oklch(0.14 0 0);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Fix navbar responsive padding */
+nav.nav-bg {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* ===== Bootstrap-proof utility overrides ===== */
+/* These replace Tailwind / modifier classes that Bootstrap overrides */
+
+/* Hero floating info cards */
+.hero-float-card {
+  background: rgba(255,255,255,0.92) !important;
+  border: 1px solid oklch(0.92 0 0) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Dark section semi-transparent backgrounds */
+.bg-white-5  { background: rgba(255,255,255,0.05)  !important; }
+.bg-white-10 { background: rgba(255,255,255,0.10)  !important; }
+.bg-white-15 { background: rgba(255,255,255,0.15)  !important; }
+.border-white-10 { border-color: rgba(255,255,255,0.10) !important; }
+.border-white-15 { border-color: rgba(255,255,255,0.15) !important; }
+.border-white-20 { border-color: rgba(255,255,255,0.20) !important; }
+
+/* Brand color with opacity */
+.bg-brand-40 { background: oklch(0.52 0.24 285 / 0.4) !important; }
+
+/* Download CTA logo orb */
+.cta-logo-orb {
+  background: rgba(255,255,255,0.05) !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+}
+/* Desktop nav links + action buttons: visible at 1024px+ */
+#sc-nav-desktop,
+#sc-nav-actions {
+  display: none !important;
+}
+@media (min-width: 1024px) {
+  #sc-nav-desktop,
+  #sc-nav-actions {
+    display: flex !important;
+  }
+}
+
+/* Mobile hamburger button: visible below 1024px only */
+#sc-nav-hamburger {
+  display: grid !important;
+}
+@media (min-width: 1024px) {
+  #sc-nav-hamburger {
+    display: none !important;
+  }
+}
+
+/* Mobile menu drawer: hidden by default; toggled by JS */
+#sc-mobile-menu {
+  display: none !important;
+}
+#sc-mobile-menu.open {
+  display: block !important;
+}
+@media (min-width: 1024px) {
+  #sc-mobile-menu {
+    display: none !important;
+  }
+}
+</style>
+    </head>
+    <body >
+    <!-- Navigation -->
+<header class="fixed inset-x-0 top-0 z-50 transition-colors duration-300 glass border-b border-hairline/60 py-3">
+    <div class="container-x flex items-center justify-between gap-4">
+        <!-- Logo -->
+        <a href="https://skillclash.site/" class="flex items-center gap-2.5" aria-label="SkillClash home">
+            <div class="relative h-9 w-9">
+                <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand/25 to-gold/20 blur-xl opacity-70"></div>
+                <div class="relative flex h-full w-full items-center justify-center rounded-2xl bg-white ring-1 ring-hairline p-1">
+                    <img src="https://skillclash.site/uploads/company_image/thumb/IMG-20260704-WA0055.jpeg" alt="SkillClash logo" class="h-full w-full object-contain" />
+                </div>
+            </div>
+            <span class="font-display text-lg font-extrabold tracking-tight text-ink">
+                Skill<span class="text-brand">Clash</span>
+            </span>
+        </a>
+
+        <!-- Desktop Menu (ID-based, controlled by CSS in header.php) -->
+        <nav id="sc-nav-desktop" style="align-items:center; gap:0.25rem;">
+            <a href="https://skillclash.site/" class="rounded-full px-3.5 py-2 text-sm font-medium text-muted-foreground transition hover:bg-secondary hover:text-ink">Home</a>
+                                    <div class="relative group">
+                            <button class="flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium text-muted-foreground transition hover:bg-secondary hover:text-ink focus:outline-none">
+                                About Us                                <svg class="h-4 w-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div class="absolute left-0 mt-1 hidden w-48 rounded-2xl border border-hairline bg-white p-2 shadow-lift group-hover:block z-50">
+                                <a href="https://skillclash.site/page/index/about-us" class="block rounded-xl px-4 py-2 text-sm font-medium text-ink hover:bg-secondary">About Us</a>
+                                                                    <a href="https://skillclash.site/page/index/privacy-policy" class="block rounded-xl px-4 py-2 text-sm font-medium text-ink hover:bg-secondary">Privacy Policy</a>
+                                                                    <a href="https://skillclash.site/page/index/terms_conditions" class="block rounded-xl px-4 py-2 text-sm font-medium text-ink hover:bg-secondary">Terms & Conditions</a>
+                                                            </div>
+                        </div>
+                                                <a href="https://skillclash.site/page/index/contact" class="rounded-full px-3.5 py-2 text-sm font-medium text-muted-foreground transition hover:bg-secondary hover:text-ink">
+                            Contact                        </a>
+                                    
+            <!-- Language Dropdown -->
+            <div class="relative group">
+                <button class="flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium text-muted-foreground transition hover:bg-secondary hover:text-ink focus:outline-none">
+                    <i class="fa fa-language mr-1"></i>Languages                    <svg class="h-4 w-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div class="absolute right-0 mt-1 hidden w-40 rounded-2xl border border-hairline bg-white p-2 shadow-lift group-hover:block z-50">
+                                            <a href="https://skillclash.site/LanguageSwitcher/switchLang?lang=english" class="block rounded-xl px-4 py-2 text-sm font-medium text-ink hover:bg-secondary bg-secondary font-bold text-brand">
+                            English                        </a>
+                                    </div>
+            </div>
+        </nav>
+
+        <!-- Desktop Action Buttons (ID-based) -->
+        <div id="sc-nav-actions" style="align-items:center; gap:0.5rem;">
+                            <a href="https://skillclash.site/login" class="btn-secondary !py-2.5 !px-4 text-sm">Login</a>
+                <a href="https://skillclash.site/register" class="btn-primary !py-2.5 !px-4 text-sm">Sign Up</a>
+                    </div>
+
+        <!-- Mobile Hamburger Button (ID-based) -->
+        <button
+            id="sc-nav-hamburger"
+            onclick="document.getElementById('sc-mobile-menu').classList.toggle('open')"
+            style="place-items:center; width:2.5rem; height:2.5rem; border-radius:9999px; border:1px solid oklch(0.92 0 0); background:#fff; cursor:pointer;"
+            aria-label="Toggle Menu"
+        >
+            <svg style="width:1.25rem; height:1.25rem; color:oklch(0.14 0 0);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Mobile Menu Drawer (ID-based) -->
+    <div id="sc-mobile-menu">
+        <div class="container-x mt-3 rounded-3xl border border-hairline bg-white p-4 shadow-lift">
+            <div class="grid gap-1">
+                <a href="https://skillclash.site/" class="rounded-xl px-3 py-2.5 text-sm font-medium text-ink hover:bg-secondary">Home</a>
+                                            <div class="px-3 py-2">
+                                <div class="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">About Us</div>
+                                <a href="https://skillclash.site/page/index/about-us" class="block rounded-xl py-1.5 pl-3 text-sm font-medium text-ink hover:bg-secondary">About Us (Main)</a>
+                                                                    <a href="https://skillclash.site/page/index/privacy-policy" class="block rounded-xl py-1.5 pl-3 text-sm font-medium text-ink hover:bg-secondary">Privacy Policy</a>
+                                                                    <a href="https://skillclash.site/page/index/terms_conditions" class="block rounded-xl py-1.5 pl-3 text-sm font-medium text-ink hover:bg-secondary">Terms & Conditions</a>
+                                                            </div>
+                                                        <a href="https://skillclash.site/page/index/contact" class="rounded-xl px-3 py-2.5 text-sm font-medium text-ink hover:bg-secondary">
+                                Contact                            </a>
+                                            <!-- Mobile Languages -->
+                <div class="px-3 py-2 border-t border-hairline mt-2">
+                    <div class="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Languages</div>
+                    <div class="flex flex-wrap gap-2 mt-1">
+                                                    <a href="https://skillclash.site/LanguageSwitcher/switchLang?lang=english" class="rounded-full border border-hairline px-3 py-1 text-xs font-medium hover:bg-secondary bg-brand text-white border-brand">
+                                English                            </a>
+                                            </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Auth Action Buttons -->
+            <div class="mt-4 grid grid-cols-2 gap-2 border-t border-hairline pt-3">
+                                    <a href="https://skillclash.site/login" class="btn-secondary text-sm text-center">Login</a>
+                    <a href="https://skillclash.site/register" class="btn-primary text-sm text-center">Sign Up</a>
+                            </div>
+        </div>
+    </div>
+</header>
+<!-- Offset header spacing -->
+<div class="h-20"></div><!--======== HERO SECTION ========-->
+<section id="home" class="hero-gradient relative overflow-hidden pt-12 md:pt-20">
+    <div class="grid-bg pointer-events-none absolute inset-0"></div>
+    <div class="container-x relative grid gap-12 pb-20 md:pb-28 lg:grid-cols-2 lg:items-center">
+        <!-- Left Column -->
+        <div>
+            <div class="chip">
+                <span class="h-1.5 w-1.5 rounded-full bg-success animate-pulse-ring"></span>
+                Live · India's #1 Free Fire eSports Platform
+            </div>
+
+            <h1 class="mt-5 text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl md:text-6xl lg:text-[62px]">
+                India's Trusted <br>
+                <span class="text-gradient-brand">Skill-Based</span> <br>
+                <span id="typed"></span>
+            </h1>
+
+            <p class="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+                Where skill meets rewards. Compete against real players, win real cash, and enjoy FairPlay, secure payments, and instant withdrawals.                                                                             </p>
+
+            <div class="mt-8 flex flex-wrap items-center gap-3">
+                <a href="#download" class="btn-primary">
+                    <i class="fa fa-download"></i> DOWNLOAD APP                 </a>
+                <a href="#tournaments" class="btn-secondary">
+                    <i class="fa fa-play text-brand"></i> Start Playing
+                </a>
+            </div>
+
+            <div class="mt-6 flex items-center gap-3 text-sm text-muted-foreground">
+                <div class="flex text-amber-500">
+                    ★★★★★
+                </div>
+                <span>Trusted by <span class="font-semibold text-ink">3L+ Players</span> across India</span>
+            </div>
+        </div>
+
+        <!-- Right Column (Visual) -->
+        <div class="relative">
+            <div class="relative mx-auto aspect-square w-full max-w-[500px]">
+                <!-- Halo effect -->
+                <div class="absolute inset-0 rounded-[40%] bg-gradient-to-tr from-brand/20 via-transparent to-gold/25 blur-3xl"></div>
+                <!-- Rotating rings -->
+                <div class="absolute inset-6 rounded-full border border-dashed border-hairline animate-spin-slow"></div>
+                <div class="absolute inset-16 rounded-full border border-hairline/70"></div>
+
+                <!-- Main dynamic screenshot side image -->
+                <div class="absolute inset-0 grid place-items-center">
+                    <div class="relative">
+                        <div class="absolute inset-0 rounded-full bg-brand/20 blur-3xl"></div>
+                                                    <img src="https://skillclash.site/uploads/company_image/thumb/IMG-20260704-WA0055.jpeg" alt="SkillClash logo" class="relative h-44 w-auto object-contain md:h-56 drop-shadow-[0_20px_40px_rgba(110,74,255,0.35)]" />
+                                            </div>
+                </div>
+
+                <!-- Floating info cards -->
+                <div class="absolute top-4 left-0 z-10 flex items-center gap-2.5 rounded-2xl px-3 py-2 shadow-lift animate-float hero-float-card" style="animation-delay: 0s;">
+                    <i class="fa fa-trophy text-amber-500"></i>
+                    <div>
+                        <div class="text-[9px] uppercase tracking-wide text-muted-foreground font-semibold">Prize Pool</div>
+                        <div class="text-xs font-bold text-ink">₹5,00,000</div>
+                    </div>
+                </div>
+
+                <div class="absolute top-24 right-0 z-10 flex items-center gap-2.5 rounded-2xl px-3 py-2 shadow-lift animate-float hero-float-card" style="animation-delay: 0.3s;">
+                    <i class="fa fa-money text-emerald-500"></i>
+                    <div>
+                        <div class="text-[9px] uppercase tracking-wide text-muted-foreground font-semibold">Withdrawal</div>
+                        <div class="text-xs font-bold text-ink">₹250 · 2s ago</div>
+                    </div>
+                </div>
+
+                <div class="absolute bottom-16 left-2 z-10 flex items-center gap-2.5 rounded-2xl px-3 py-2 shadow-lift animate-float hero-float-card" style="animation-delay: 0.6s;">
+                    <i class="fa fa-shield text-indigo-500"></i>
+                    <div>
+                        <div class="text-[9px] uppercase tracking-wide text-muted-foreground font-semibold">FairPlay</div>
+                        <div class="text-xs font-bold text-ink">Enabled</div>
+                    </div>
+                </div>
+
+                <div class="absolute bottom-4 right-2 z-10 flex items-center gap-2.5 rounded-2xl px-3 py-2 shadow-lift animate-float hero-float-card" style="animation-delay: 0.9s;">
+                    <i class="fa fa-bolt text-brand"></i>
+                    <div>
+                        <div class="text-[9px] uppercase tracking-wide text-muted-foreground font-semibold">Matches</div>
+                        <div class="text-xs font-bold text-ink">12,40,000+ Played</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live stats strip -->
+            <div class="mx-auto mt-8 grid max-w-[500px] grid-cols-2 gap-3 sm:grid-cols-4">
+                                    <div class="card-premium px-3 py-3 text-center">
+                        <div class="text-lg font-extrabold text-ink">3L+</div>
+                        <div class="text-[11px] font-medium text-muted-foreground">Players</div>
+                    </div>
+                                    <div class="card-premium px-3 py-3 text-center">
+                        <div class="text-lg font-extrabold text-ink">12,40,000+</div>
+                        <div class="text-[11px] font-medium text-muted-foreground">Matches</div>
+                    </div>
+                                    <div class="card-premium px-3 py-3 text-center">
+                        <div class="text-lg font-extrabold text-ink">24×7</div>
+                        <div class="text-[11px] font-medium text-muted-foreground">Withdrawals</div>
+                    </div>
+                                    <div class="card-premium px-3 py-3 text-center">
+                        <div class="text-lg font-extrabold text-ink">100%</div>
+                        <div class="text-[11px] font-medium text-muted-foreground">FairPlay</div>
+                    </div>
+                            </div>
+        </div>
+    </div>
+</section>
+
+<!--======== TRUST BAR SECTION ========-->
+<section class="border-y border-hairline bg-surface">
+    <div class="container-x py-8">
+        <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+                            <div class="flex items-center gap-2.5 rounded-2xl bg-white px-3.5 py-3 ring-1 ring-hairline shadow-soft">
+                    <div class="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-brand/10 text-brand">
+                        <i class="fa fa-shield text-sm"></i>
+                    </div>
+                    <span class="text-xs font-semibold text-ink sm:text-sm">FairPlay Enabled</span>
+                </div>
+                            <div class="flex items-center gap-2.5 rounded-2xl bg-white px-3.5 py-3 ring-1 ring-hairline shadow-soft">
+                    <div class="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-brand/10 text-brand">
+                        <i class="fa fa-google-wallet text-sm"></i>
+                    </div>
+                    <span class="text-xs font-semibold text-ink sm:text-sm">Secure Wallet</span>
+                </div>
+                            <div class="flex items-center gap-2.5 rounded-2xl bg-white px-3.5 py-3 ring-1 ring-hairline shadow-soft">
+                    <div class="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-brand/10 text-brand">
+                        <i class="fa fa-flash text-sm"></i>
+                    </div>
+                    <span class="text-xs font-semibold text-ink sm:text-sm">Instant Payouts</span>
+                </div>
+                            <div class="flex items-center gap-2.5 rounded-2xl bg-white px-3.5 py-3 ring-1 ring-hairline shadow-soft">
+                    <div class="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-brand/10 text-brand">
+                        <i class="fa fa-ban text-sm"></i>
+                    </div>
+                    <span class="text-xs font-semibold text-ink sm:text-sm">Anti-Cheat Protection</span>
+                </div>
+                            <div class="flex items-center gap-2.5 rounded-2xl bg-white px-3.5 py-3 ring-1 ring-hairline shadow-soft">
+                    <div class="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-brand/10 text-brand">
+                        <i class="fa fa-headphones text-sm"></i>
+                    </div>
+                    <span class="text-xs font-semibold text-ink sm:text-sm">24×7 Support</span>
+                </div>
+                            <div class="flex items-center gap-2.5 rounded-2xl bg-white px-3.5 py-3 ring-1 ring-hairline shadow-soft">
+                    <div class="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-brand/10 text-brand">
+                        <i class="fa fa-users text-sm"></i>
+                    </div>
+                    <span class="text-xs font-semibold text-ink sm:text-sm">Trusted Community</span>
+                </div>
+                    </div>
+    </div>
+</section>
+
+<!--======== FEATURES SECTION ========-->
+<section id="about" class="py-24 md:py-32">
+    <div class="container-x">
+        <div class="mx-auto max-w-2xl text-center">
+            <div class="mb-3 inline-flex chip">Why players choose SkillClash</div>
+            <h2 class="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl md:text-[44px]">
+                Built for <span class="text-gradient-brand">serious competitors</span>
+            </h2>
+            <p class="mt-4 text-base text-muted-foreground md:text-lg">
+                Every feature designed around fairness, speed, and trust — the same values a premium eSports platform is judged on.
+            </p>
+        </div>
+
+        <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                            <div class="card-premium card-premium-hover group p-6 flex flex-col justify-between">
+                    <div>
+                        <!-- MODIFIED: Increased icon container size and icon size -->
+                        <div class="grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-brand/10 to-gold/10 text-brand transition-transform group-hover:scale-110">
+                            <i class="fa fa-crosshairs text-3xl"></i> <!-- Changed from text-lg to text-3xl -->
+                        </div>
+                        <h3 class="mt-5 text-lg font-bold text-ink">Fair Matchmaking</h3>
+                        <p class="mt-2 text-xs sm:text-sm leading-relaxed text-muted-foreground">Skill-based algorithm matches players of similar ability for balanced, competitive lobbies.</p>
+                    </div>
+                </div>
+                            <div class="card-premium card-premium-hover group p-6 flex flex-col justify-between">
+                    <div>
+                        <!-- MODIFIED: Increased icon container size and icon size -->
+                        <div class="grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-brand/10 to-gold/10 text-brand transition-transform group-hover:scale-110">
+                            <i class="fa fa-bolt text-3xl"></i> <!-- Changed from text-lg to text-3xl -->
+                        </div>
+                        <h3 class="mt-5 text-lg font-bold text-ink">Lightning Fast Withdrawals</h3>
+                        <p class="mt-2 text-xs sm:text-sm leading-relaxed text-muted-foreground">Cash out winnings to UPI or bank in seconds — no waiting, no hidden fees.</p>
+                    </div>
+                </div>
+                            <div class="card-premium card-premium-hover group p-6 flex flex-col justify-between">
+                    <div>
+                        <!-- MODIFIED: Increased icon container size and icon size -->
+                        <div class="grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-brand/10 to-gold/10 text-brand transition-transform group-hover:scale-110">
+                            <i class="fa fa-google-wallet text-3xl"></i> <!-- Changed from text-lg to text-3xl -->
+                        </div>
+                        <h3 class="mt-5 text-lg font-bold text-ink">Secure Wallet</h3>
+                        <p class="mt-2 text-xs sm:text-sm leading-relaxed text-muted-foreground">Bank-grade encryption, segregated funds, and full transaction transparency.</p>
+                    </div>
+                </div>
+                            <div class="card-premium card-premium-hover group p-6 flex flex-col justify-between">
+                    <div>
+                        <!-- MODIFIED: Increased icon container size and icon size -->
+                        <div class="grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-brand/10 to-gold/10 text-brand transition-transform group-hover:scale-110">
+                            <i class="fa fa-gift text-3xl"></i> <!-- Changed from text-lg to text-3xl -->
+                        </div>
+                        <h3 class="mt-5 text-lg font-bold text-ink">Refer & Earn</h3>
+                        <p class="mt-2 text-xs sm:text-sm leading-relaxed text-muted-foreground">Invite friends and earn lifetime commission on every match they play.</p>
+                    </div>
+                </div>
+                            <div class="card-premium card-premium-hover group p-6 flex flex-col justify-between">
+                    <div>
+                        <!-- MODIFIED: Increased icon container size and icon size -->
+                        <div class="grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-brand/10 to-gold/10 text-brand transition-transform group-hover:scale-110">
+                            <i class="fa fa-trophy text-3xl"></i> <!-- Changed from text-lg to text-3xl -->
+                        </div>
+                        <h3 class="mt-5 text-lg font-bold text-ink">Live Tournaments</h3>
+                        <p class="mt-2 text-xs sm:text-sm leading-relaxed text-muted-foreground">Daily, weekly, and championship events with massive prize pools.</p>
+                    </div>
+                </div>
+                            <div class="card-premium card-premium-hover group p-6 flex flex-col justify-between">
+                    <div>
+                        <!-- MODIFIED: Increased icon container size and icon size -->
+                        <div class="grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-brand/10 to-gold/10 text-brand transition-transform group-hover:scale-110">
+                            <i class="fa fa-headphones text-3xl"></i> <!-- Changed from text-lg to text-3xl -->
+                        </div>
+                        <h3 class="mt-5 text-lg font-bold text-ink">Professional Support</h3>
+                        <p class="mt-2 text-xs sm:text-sm leading-relaxed text-muted-foreground">In-house support team available 24×7 through chat, email, and WhatsApp.</p>
+                    </div>
+                </div>
+                    </div>
+    </div>
+</section>
+
+<!--======== GAME MODES SECTION ========-->
+<section id="games" class="bg-surface py-24 md:py-32">
+    <div class="container-x">
+        <div class="mx-auto max-w-2xl text-center">
+            <div class="mb-3 inline-flex chip">Exclusively for Garena Free Fire</div>
+            <h2 class="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl md:text-[44px]">
+                Every Free Fire mode. <span class="text-gradient-brand">One premium arena.</span>
+            </h2>
+            <p class="mt-4 text-base text-muted-foreground md:text-lg">
+                From Clash Squad to Battle Royale — join the mode you love and compete for real cash rewards, every day.
+            </p>
+        </div>
+
+        <div class="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                            <!-- MODIFIED: Made the card more rectangular by reducing vertical padding and fixing height -->
+                <a href="#tournaments" class="card-premium card-premium-hover group p-4 block" style="text-decoration:none; height: 100%; display: flex; flex-direction: column;">
+                    <div class="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-brand/15 to-brand/5 ring-1 ring-hairline text-ink">
+                        <i class="fa fa-gamepad" style="font-size:1.25rem;"></i> <!-- Slightly smaller icon to match new card size -->
+                    </div>
+                    <div class="mt-4 flex items-center justify-between"> <!-- Reduced margin-top -->
+                        <h3 class="text-base font-bold text-ink">Clash Squad</h3>
+                        <span class="chip" style="padding:0.15rem 0.5rem; font-size:0.6rem;">CS Ranked</span> <!-- Reduced padding -->
+                    </div>
+                    <div class="mt-1 flex items-center justify-between text-xs text-muted-foreground"> <!-- Reduced margin-top -->
+                        <span>4v4</span>
+                        <span class="flex items-center gap-1 text-success">
+                            <i class="fa fa-check-circle"></i> FairPlay
+                        </span>
+                    </div>
+                </a>
+                            <!-- MODIFIED: Made the card more rectangular by reducing vertical padding and fixing height -->
+                <a href="#tournaments" class="card-premium card-premium-hover group p-4 block" style="text-decoration:none; height: 100%; display: flex; flex-direction: column;">
+                    <div class="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-gold/15 to-gold/5 ring-1 ring-hairline text-ink">
+                        <i class="fa fa-crosshairs" style="font-size:1.25rem;"></i> <!-- Slightly smaller icon to match new card size -->
+                    </div>
+                    <div class="mt-4 flex items-center justify-between"> <!-- Reduced margin-top -->
+                        <h3 class="text-base font-bold text-ink">Lone Wolf</h3>
+                        <span class="chip" style="padding:0.15rem 0.5rem; font-size:0.6rem;">1v1 · 2v2</span> <!-- Reduced padding -->
+                    </div>
+                    <div class="mt-1 flex items-center justify-between text-xs text-muted-foreground"> <!-- Reduced margin-top -->
+                        <span>Quick Match</span>
+                        <span class="flex items-center gap-1 text-success">
+                            <i class="fa fa-check-circle"></i> FairPlay
+                        </span>
+                    </div>
+                </a>
+                            <!-- MODIFIED: Made the card more rectangular by reducing vertical padding and fixing height -->
+                <a href="#tournaments" class="card-premium card-premium-hover group p-4 block" style="text-decoration:none; height: 100%; display: flex; flex-direction: column;">
+                    <div class="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-brand/15 to-brand/5 ring-1 ring-hairline text-ink">
+                        <i class="fa fa-fire" style="font-size:1.25rem;"></i> <!-- Slightly smaller icon to match new card size -->
+                    </div>
+                    <div class="mt-4 flex items-center justify-between"> <!-- Reduced margin-top -->
+                        <h3 class="text-base font-bold text-ink">Battle Royale</h3>
+                        <span class="chip" style="padding:0.15rem 0.5rem; font-size:0.6rem;">BR</span> <!-- Reduced padding -->
+                    </div>
+                    <div class="mt-1 flex items-center justify-between text-xs text-muted-foreground"> <!-- Reduced margin-top -->
+                        <span>50 players</span>
+                        <span class="flex items-center gap-1 text-success">
+                            <i class="fa fa-check-circle"></i> FairPlay
+                        </span>
+                    </div>
+                </a>
+                            <!-- MODIFIED: Made the card more rectangular by reducing vertical padding and fixing height -->
+                <a href="#tournaments" class="card-premium card-premium-hover group p-4 block" style="text-decoration:none; height: 100%; display: flex; flex-direction: column;">
+                    <div class="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-gold/15 to-gold/5 ring-1 ring-hairline text-ink">
+                        <i class="fa fa-times-circle" style="font-size:1.25rem;"></i> <!-- Slightly smaller icon to match new card size -->
+                    </div>
+                    <div class="mt-4 flex items-center justify-between"> <!-- Reduced margin-top -->
+                        <h3 class="text-base font-bold text-ink">Survival Mode</h3>
+                        <span class="chip" style="padding:0.15rem 0.5rem; font-size:0.6rem;">Elite</span> <!-- Reduced padding -->
+                    </div>
+                    <div class="mt-1 flex items-center justify-between text-xs text-muted-foreground"> <!-- Reduced margin-top -->
+                        <span>Solo</span>
+                        <span class="flex items-center gap-1 text-success">
+                            <i class="fa fa-check-circle"></i> FairPlay
+                        </span>
+                    </div>
+                </a>
+                            <!-- MODIFIED: Made the card more rectangular by reducing vertical padding and fixing height -->
+                <a href="#tournaments" class="card-premium card-premium-hover group p-4 block" style="text-decoration:none; height: 100%; display: flex; flex-direction: column;">
+                    <div class="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-brand/15 to-brand/5 ring-1 ring-hairline text-ink">
+                        <i class="fa fa-user" style="font-size:1.25rem;"></i> <!-- Slightly smaller icon to match new card size -->
+                    </div>
+                    <div class="mt-4 flex items-center justify-between"> <!-- Reduced margin-top -->
+                        <h3 class="text-base font-bold text-ink">Solo Battle</h3>
+                        <span class="chip" style="padding:0.15rem 0.5rem; font-size:0.6rem;">1 Player</span> <!-- Reduced padding -->
+                    </div>
+                    <div class="mt-1 flex items-center justify-between text-xs text-muted-foreground"> <!-- Reduced margin-top -->
+                        <span>Ranked</span>
+                        <span class="flex items-center gap-1 text-success">
+                            <i class="fa fa-check-circle"></i> FairPlay
+                        </span>
+                    </div>
+                </a>
+                            <!-- MODIFIED: Made the card more rectangular by reducing vertical padding and fixing height -->
+                <a href="#tournaments" class="card-premium card-premium-hover group p-4 block" style="text-decoration:none; height: 100%; display: flex; flex-direction: column;">
+                    <div class="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-gold/15 to-gold/5 ring-1 ring-hairline text-ink">
+                        <i class="fa fa-users" style="font-size:1.25rem;"></i> <!-- Slightly smaller icon to match new card size -->
+                    </div>
+                    <div class="mt-4 flex items-center justify-between"> <!-- Reduced margin-top -->
+                        <h3 class="text-base font-bold text-ink">Duo Battle</h3>
+                        <span class="chip" style="padding:0.15rem 0.5rem; font-size:0.6rem;">2 Players</span> <!-- Reduced padding -->
+                    </div>
+                    <div class="mt-1 flex items-center justify-between text-xs text-muted-foreground"> <!-- Reduced margin-top -->
+                        <span>Team</span>
+                        <span class="flex items-center gap-1 text-success">
+                            <i class="fa fa-check-circle"></i> FairPlay
+                        </span>
+                    </div>
+                </a>
+                            <!-- MODIFIED: Made the card more rectangular by reducing vertical padding and fixing height -->
+                <a href="#tournaments" class="card-premium card-premium-hover group p-4 block" style="text-decoration:none; height: 100%; display: flex; flex-direction: column;">
+                    <div class="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-brand/15 to-brand/5 ring-1 ring-hairline text-ink">
+                        <i class="fa fa-group" style="font-size:1.25rem;"></i> <!-- Slightly smaller icon to match new card size -->
+                    </div>
+                    <div class="mt-4 flex items-center justify-between"> <!-- Reduced margin-top -->
+                        <h3 class="text-base font-bold text-ink">Squad Battle</h3>
+                        <span class="chip" style="padding:0.15rem 0.5rem; font-size:0.6rem;">4v4</span> <!-- Reduced padding -->
+                    </div>
+                    <div class="mt-1 flex items-center justify-between text-xs text-muted-foreground"> <!-- Reduced margin-top -->
+                        <span>Team</span>
+                        <span class="flex items-center gap-1 text-success">
+                            <i class="fa fa-check-circle"></i> FairPlay
+                        </span>
+                    </div>
+                </a>
+                            <!-- MODIFIED: Made the card more rectangular by reducing vertical padding and fixing height -->
+                <a href="#tournaments" class="card-premium card-premium-hover group p-4 block" style="text-decoration:none; height: 100%; display: flex; flex-direction: column;">
+                    <div class="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-gold/15 to-gold/5 ring-1 ring-hairline text-ink">
+                        <i class="fa fa-sign-in" style="font-size:1.25rem;"></i> <!-- Slightly smaller icon to match new card size -->
+                    </div>
+                    <div class="mt-4 flex items-center justify-between"> <!-- Reduced margin-top -->
+                        <h3 class="text-base font-bold text-ink">Custom Room</h3>
+                        <span class="chip" style="padding:0.15rem 0.5rem; font-size:0.6rem;">Private</span> <!-- Reduced padding -->
+                    </div>
+                    <div class="mt-1 flex items-center justify-between text-xs text-muted-foreground"> <!-- Reduced margin-top -->
+                        <span>Custom</span>
+                        <span class="flex items-center gap-1 text-success">
+                            <i class="fa fa-check-circle"></i> FairPlay
+                        </span>
+                    </div>
+                </a>
+                            <!-- MODIFIED: Made the card more rectangular by reducing vertical padding and fixing height -->
+                <a href="#tournaments" class="card-premium card-premium-hover group p-4 block" style="text-decoration:none; height: 100%; display: flex; flex-direction: column;">
+                    <div class="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-brand/15 to-brand/5 ring-1 ring-hairline text-ink">
+                        <i class="fa fa-shield" style="font-size:1.25rem;"></i> <!-- Slightly smaller icon to match new card size -->
+                    </div>
+                    <div class="mt-4 flex items-center justify-between"> <!-- Reduced margin-top -->
+                        <h3 class="text-base font-bold text-ink">Guild Wars</h3>
+                        <span class="chip" style="padding:0.15rem 0.5rem; font-size:0.6rem;">Clan</span> <!-- Reduced padding -->
+                    </div>
+                    <div class="mt-1 flex items-center justify-between text-xs text-muted-foreground"> <!-- Reduced margin-top -->
+                        <span>Team</span>
+                        <span class="flex items-center gap-1 text-success">
+                            <i class="fa fa-check-circle"></i> FairPlay
+                        </span>
+                    </div>
+                </a>
+                            <!-- MODIFIED: Made the card more rectangular by reducing vertical padding and fixing height -->
+                <a href="#tournaments" class="card-premium card-premium-hover group p-4 block" style="text-decoration:none; height: 100%; display: flex; flex-direction: column;">
+                    <div class="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-gold/15 to-gold/5 ring-1 ring-hairline text-ink">
+                        <i class="fa fa-money" style="font-size:1.25rem;"></i> <!-- Slightly smaller icon to match new card size -->
+                    </div>
+                    <div class="mt-4 flex items-center justify-between"> <!-- Reduced margin-top -->
+                        <h3 class="text-base font-bold text-ink">Daily Cash Cup</h3>
+                        <span class="chip" style="padding:0.15rem 0.5rem; font-size:0.6rem;">Daily</span> <!-- Reduced padding -->
+                    </div>
+                    <div class="mt-1 flex items-center justify-between text-xs text-muted-foreground"> <!-- Reduced margin-top -->
+                        <span>Open</span>
+                        <span class="flex items-center gap-1 text-success">
+                            <i class="fa fa-check-circle"></i> FairPlay
+                        </span>
+                    </div>
+                </a>
+                            <!-- MODIFIED: Made the card more rectangular by reducing vertical padding and fixing height -->
+                <a href="#tournaments" class="card-premium card-premium-hover group p-4 block" style="text-decoration:none; height: 100%; display: flex; flex-direction: column;">
+                    <div class="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-brand/15 to-brand/5 ring-1 ring-hairline text-ink">
+                        <i class="fa fa-calendar" style="font-size:1.25rem;"></i> <!-- Slightly smaller icon to match new card size -->
+                    </div>
+                    <div class="mt-4 flex items-center justify-between"> <!-- Reduced margin-top -->
+                        <h3 class="text-base font-bold text-ink">Weekly Championship</h3>
+                        <span class="chip" style="padding:0.15rem 0.5rem; font-size:0.6rem;">Weekly</span> <!-- Reduced padding -->
+                    </div>
+                    <div class="mt-1 flex items-center justify-between text-xs text-muted-foreground"> <!-- Reduced margin-top -->
+                        <span>Ranked</span>
+                        <span class="flex items-center gap-1 text-success">
+                            <i class="fa fa-check-circle"></i> FairPlay
+                        </span>
+                    </div>
+                </a>
+                    </div>
+    </div>
+</section>
+
+<!--======== LIVE TOURNAMENTS SECTION ========-->
+<section id="tournaments" class="py-24 md:py-32">
+    <div class="container-x">
+        <div class="mx-auto max-w-2xl text-center">
+            <div class="mb-3 inline-flex chip">Live now</div>
+            <h2 class="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl md:text-[44px]">
+                Jump into a <span class="text-gradient-brand">live tournament</span>
+            </h2>
+            <p class="mt-4 text-base text-muted-foreground md:text-lg">
+                Real players. Real prize pools. Real-time payouts on match completion.
+            </p>
+        </div>
+
+        <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                            <div class="card-premium card-premium-hover overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <!-- Header cover layout -->
+                        <div class="relative h-36 overflow-hidden bg-gradient-to-br from-indigo-950 to-purple-900 p-4 flex flex-col justify-between text-white">
+                            <div class="absolute inset-0 opacity-20 bg-cover grid-bg"></div>
+                            
+                            <div class="flex items-center justify-between">
+                                <span class="chip chip-white" style="backdrop-filter:blur(8px);">
+                                    <span class="h-1.5 w-1.5 rounded-full bg-success animate-pulse-ring"></span> LIVE
+                                </span>
+                                <span class="chip chip-white" style="backdrop-filter:blur(8px);">
+                                    <i class="fa fa-shield"></i> FairPlay
+                                </span>
+                            </div>
+
+                            <div>
+                                <div class="text-xs opacity-85">Clash Squad · 4v4</div>
+                                <h3 class="mt-0.5 text-lg font-bold truncate">🔥 Clash Squad Championship</h3>
+                            </div>
+                        </div>
+
+                        <!-- Stats grid -->
+                        <div class="p-5">
+                            <div class="grid grid-cols-3 gap-3 text-center mb-4">
+                                <div>
+                                    <div class="text-[9px] uppercase tracking-wide text-muted-foreground font-semibold">Entry Fee</div>
+                                    <div class="text-sm font-bold text-ink">₹49</div>
+                                </div>
+                                <div>
+                                    <div class="text-[9px] uppercase tracking-wide text-muted-foreground font-semibold">Prize Pool</div>
+                                    <div class="text-sm font-bold text-gradient-gold">₹25,000</div>
+                                </div>
+                                <div>
+                                    <div class="text-[9px] uppercase tracking-wide text-muted-foreground font-semibold">Remaining</div>
+                                    <div class="text-sm font-bold text-ink">32 left</div>
+                                </div>
+                            </div>
+
+                            <!-- Joined progress bar -->
+                            <div>
+                                <div class="flex items-center justify-between text-xs text-muted-foreground">
+                                    <span>168 players joined</span>
+                                    <span>84%</span>
+                                </div>
+                                <div class="mt-1.5 h-1.5 overflow-hidden rounded-full bg-secondary">
+                                    <div class="h-full rounded-full bg-gradient-to-r from-brand to-gold" style="width: 84%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="px-5 pb-5">
+                        <a href="https://github.com/aaryansingh91/test/raw/refs/heads/main/SkillClash.apk" class="btn-brand w-full text-center">
+                            Join Tournament
+                        </a>
+                    </div>
+                </div>
+                            <div class="card-premium card-premium-hover overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <!-- Header cover layout -->
+                        <div class="relative h-36 overflow-hidden bg-gradient-to-br from-indigo-950 to-purple-900 p-4 flex flex-col justify-between text-white">
+                            <div class="absolute inset-0 opacity-20 bg-cover grid-bg"></div>
+                            
+                            <div class="flex items-center justify-between">
+                                <span class="chip chip-white" style="backdrop-filter:blur(8px);">
+                                    <span class="h-1.5 w-1.5 rounded-full bg-success animate-pulse-ring"></span> LIVE
+                                </span>
+                                <span class="chip chip-white" style="backdrop-filter:blur(8px);">
+                                    <i class="fa fa-shield"></i> FairPlay
+                                </span>
+                            </div>
+
+                            <div>
+                                <div class="text-xs opacity-85">Lone Wolf · 1v1</div>
+                                <h3 class="mt-0.5 text-lg font-bold truncate">👑 Lone Wolf Pro Cup</h3>
+                            </div>
+                        </div>
+
+                        <!-- Stats grid -->
+                        <div class="p-5">
+                            <div class="grid grid-cols-3 gap-3 text-center mb-4">
+                                <div>
+                                    <div class="text-[9px] uppercase tracking-wide text-muted-foreground font-semibold">Entry Fee</div>
+                                    <div class="text-sm font-bold text-ink">₹25</div>
+                                </div>
+                                <div>
+                                    <div class="text-[9px] uppercase tracking-wide text-muted-foreground font-semibold">Prize Pool</div>
+                                    <div class="text-sm font-bold text-gradient-gold">₹10,000</div>
+                                </div>
+                                <div>
+                                    <div class="text-[9px] uppercase tracking-wide text-muted-foreground font-semibold">Remaining</div>
+                                    <div class="text-sm font-bold text-ink">8 left</div>
+                                </div>
+                            </div>
+
+                            <!-- Joined progress bar -->
+                            <div>
+                                <div class="flex items-center justify-between text-xs text-muted-foreground">
+                                    <span>92 players joined</span>
+                                    <span>92%</span>
+                                </div>
+                                <div class="mt-1.5 h-1.5 overflow-hidden rounded-full bg-secondary">
+                                    <div class="h-full rounded-full bg-gradient-to-r from-brand to-gold" style="width: 92%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="px-5 pb-5">
+                        <a href="https://github.com/aaryansingh91/test/raw/refs/heads/main/SkillClash.apk" class="btn-brand w-full text-center">
+                            Join Tournament
+                        </a>
+                    </div>
+                </div>
+                            <div class="card-premium card-premium-hover overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <!-- Header cover layout -->
+                        <div class="relative h-36 overflow-hidden bg-gradient-to-br from-indigo-950 to-purple-900 p-4 flex flex-col justify-between text-white">
+                            <div class="absolute inset-0 opacity-20 bg-cover grid-bg"></div>
+                            
+                            <div class="flex items-center justify-between">
+                                <span class="chip chip-white" style="backdrop-filter:blur(8px);">
+                                    <span class="h-1.5 w-1.5 rounded-full bg-success animate-pulse-ring"></span> LIVE
+                                </span>
+                                <span class="chip chip-white" style="backdrop-filter:blur(8px);">
+                                    <i class="fa fa-shield"></i> FairPlay
+                                </span>
+                            </div>
+
+                            <div>
+                                <div class="text-xs opacity-85">BR · Solo</div>
+                                <h3 class="mt-0.5 text-lg font-bold truncate">💥 Battle Royale Knockout</h3>
+                            </div>
+                        </div>
+
+                        <!-- Stats grid -->
+                        <div class="p-5">
+                            <div class="grid grid-cols-3 gap-3 text-center mb-4">
+                                <div>
+                                    <div class="text-[9px] uppercase tracking-wide text-muted-foreground font-semibold">Entry Fee</div>
+                                    <div class="text-sm font-bold text-ink">₹39</div>
+                                </div>
+                                <div>
+                                    <div class="text-[9px] uppercase tracking-wide text-muted-foreground font-semibold">Prize Pool</div>
+                                    <div class="text-sm font-bold text-gradient-gold">₹50,000</div>
+                                </div>
+                                <div>
+                                    <div class="text-[9px] uppercase tracking-wide text-muted-foreground font-semibold">Remaining</div>
+                                    <div class="text-sm font-bold text-ink">88 left</div>
+                                </div>
+                            </div>
+
+                            <!-- Joined progress bar -->
+                            <div>
+                                <div class="flex items-center justify-between text-xs text-muted-foreground">
+                                    <span>412 players joined</span>
+                                    <span>82%</span>
+                                </div>
+                                <div class="mt-1.5 h-1.5 overflow-hidden rounded-full bg-secondary">
+                                    <div class="h-full rounded-full bg-gradient-to-r from-brand to-gold" style="width: 82%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="px-5 pb-5">
+                        <a href="https://github.com/aaryansingh91/test/raw/refs/heads/main/SkillClash.apk" class="btn-brand w-full text-center">
+                            Join Tournament
+                        </a>
+                    </div>
+                </div>
+                            <div class="card-premium card-premium-hover overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <!-- Header cover layout -->
+                        <div class="relative h-36 overflow-hidden bg-gradient-to-br from-indigo-950 to-purple-900 p-4 flex flex-col justify-between text-white">
+                            <div class="absolute inset-0 opacity-20 bg-cover grid-bg"></div>
+                            
+                            <div class="flex items-center justify-between">
+                                <span class="chip chip-white" style="backdrop-filter:blur(8px);">
+                                    <span class="h-1.5 w-1.5 rounded-full bg-success animate-pulse-ring"></span> LIVE
+                                </span>
+                                <span class="chip chip-white" style="backdrop-filter:blur(8px);">
+                                    <i class="fa fa-shield"></i> FairPlay
+                                </span>
+                            </div>
+
+                            <div>
+                                <div class="text-xs opacity-85">Survival · Solo</div>
+                                <h3 class="mt-0.5 text-lg font-bold truncate">⚡ Survival Elite</h3>
+                            </div>
+                        </div>
+
+                        <!-- Stats grid -->
+                        <div class="p-5">
+                            <div class="grid grid-cols-3 gap-3 text-center mb-4">
+                                <div>
+                                    <div class="text-[9px] uppercase tracking-wide text-muted-foreground font-semibold">Entry Fee</div>
+                                    <div class="text-sm font-bold text-ink">₹19</div>
+                                </div>
+                                <div>
+                                    <div class="text-[9px] uppercase tracking-wide text-muted-foreground font-semibold">Prize Pool</div>
+                                    <div class="text-sm font-bold text-gradient-gold">₹8,000</div>
+                                </div>
+                                <div>
+                                    <div class="text-[9px] uppercase tracking-wide text-muted-foreground font-semibold">Remaining</div>
+                                    <div class="text-sm font-bold text-ink">24 left</div>
+                                </div>
+                            </div>
+
+                            <!-- Joined progress bar -->
+                            <div>
+                                <div class="flex items-center justify-between text-xs text-muted-foreground">
+                                    <span>76 players joined</span>
+                                    <span>76%</span>
+                                </div>
+                                <div class="mt-1.5 h-1.5 overflow-hidden rounded-full bg-secondary">
+                                    <div class="h-full rounded-full bg-gradient-to-r from-brand to-gold" style="width: 76%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="px-5 pb-5">
+                        <a href="https://github.com/aaryansingh91/test/raw/refs/heads/main/SkillClash.apk" class="btn-brand w-full text-center">
+                            Join Tournament
+                        </a>
+                    </div>
+                </div>
+                            <div class="card-premium card-premium-hover overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <!-- Header cover layout -->
+                        <div class="relative h-36 overflow-hidden bg-gradient-to-br from-indigo-950 to-purple-900 p-4 flex flex-col justify-between text-white">
+                            <div class="absolute inset-0 opacity-20 bg-cover grid-bg"></div>
+                            
+                            <div class="flex items-center justify-between">
+                                <span class="chip chip-white" style="backdrop-filter:blur(8px);">
+                                    <span class="h-1.5 w-1.5 rounded-full bg-success animate-pulse-ring"></span> LIVE
+                                </span>
+                                <span class="chip chip-white" style="backdrop-filter:blur(8px);">
+                                    <i class="fa fa-shield"></i> FairPlay
+                                </span>
+                            </div>
+
+                            <div>
+                                <div class="text-xs opacity-85">Squad · 4v4</div>
+                                <h3 class="mt-0.5 text-lg font-bold truncate">🏆 Daily Cash Cup</h3>
+                            </div>
+                        </div>
+
+                        <!-- Stats grid -->
+                        <div class="p-5">
+                            <div class="grid grid-cols-3 gap-3 text-center mb-4">
+                                <div>
+                                    <div class="text-[9px] uppercase tracking-wide text-muted-foreground font-semibold">Entry Fee</div>
+                                    <div class="text-sm font-bold text-ink">₹59</div>
+                                </div>
+                                <div>
+                                    <div class="text-[9px] uppercase tracking-wide text-muted-foreground font-semibold">Prize Pool</div>
+                                    <div class="text-sm font-bold text-gradient-gold">₹15,000</div>
+                                </div>
+                                <div>
+                                    <div class="text-[9px] uppercase tracking-wide text-muted-foreground font-semibold">Remaining</div>
+                                    <div class="text-sm font-bold text-ink">46 left</div>
+                                </div>
+                            </div>
+
+                            <!-- Joined progress bar -->
+                            <div>
+                                <div class="flex items-center justify-between text-xs text-muted-foreground">
+                                    <span>210 players joined</span>
+                                    <span>82%</span>
+                                </div>
+                                <div class="mt-1.5 h-1.5 overflow-hidden rounded-full bg-secondary">
+                                    <div class="h-full rounded-full bg-gradient-to-r from-brand to-gold" style="width: 82%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="px-5 pb-5">
+                        <a href="https://github.com/aaryansingh91/test/raw/refs/heads/main/SkillClash.apk" class="btn-brand w-full text-center">
+                            Join Tournament
+                        </a>
+                    </div>
+                </div>
+                            <div class="card-premium card-premium-hover overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <!-- Header cover layout -->
+                        <div class="relative h-36 overflow-hidden bg-gradient-to-br from-indigo-950 to-purple-900 p-4 flex flex-col justify-between text-white">
+                            <div class="absolute inset-0 opacity-20 bg-cover grid-bg"></div>
+                            
+                            <div class="flex items-center justify-between">
+                                <span class="chip chip-white" style="backdrop-filter:blur(8px);">
+                                    <span class="h-1.5 w-1.5 rounded-full bg-success animate-pulse-ring"></span> LIVE
+                                </span>
+                                <span class="chip chip-white" style="backdrop-filter:blur(8px);">
+                                    <i class="fa fa-shield"></i> FairPlay
+                                </span>
+                            </div>
+
+                            <div>
+                                <div class="text-xs opacity-85">Custom · Duo</div>
+                                <h3 class="mt-0.5 text-lg font-bold truncate">🎯 Custom Room Challenge</h3>
+                            </div>
+                        </div>
+
+                        <!-- Stats grid -->
+                        <div class="p-5">
+                            <div class="grid grid-cols-3 gap-3 text-center mb-4">
+                                <div>
+                                    <div class="text-[9px] uppercase tracking-wide text-muted-foreground font-semibold">Entry Fee</div>
+                                    <div class="text-sm font-bold text-ink">₹15</div>
+                                </div>
+                                <div>
+                                    <div class="text-[9px] uppercase tracking-wide text-muted-foreground font-semibold">Prize Pool</div>
+                                    <div class="text-sm font-bold text-gradient-gold">₹5,000</div>
+                                </div>
+                                <div>
+                                    <div class="text-[9px] uppercase tracking-wide text-muted-foreground font-semibold">Remaining</div>
+                                    <div class="text-sm font-bold text-ink">20 left</div>
+                                </div>
+                            </div>
+
+                            <!-- Joined progress bar -->
+                            <div>
+                                <div class="flex items-center justify-between text-xs text-muted-foreground">
+                                    <span>44 players joined</span>
+                                    <span>69%</span>
+                                </div>
+                                <div class="mt-1.5 h-1.5 overflow-hidden rounded-full bg-secondary">
+                                    <div class="h-full rounded-full bg-gradient-to-r from-brand to-gold" style="width: 69%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="px-5 pb-5">
+                        <a href="https://github.com/aaryansingh91/test/raw/refs/heads/main/SkillClash.apk" class="btn-brand w-full text-center">
+                            Join Tournament
+                        </a>
+                    </div>
+                </div>
+                    </div>
+    </div>
+</section>
+
+<!--======== HOW TO PLAY SECTION ========-->
+<section id="howtoplay" class="bg-surface py-24 md:py-32">
+    <div class="container-x">
+        <div class="mx-auto max-w-2xl text-center">
+            <div class="mb-3 inline-flex chip">How it works</div>
+            <h2 class="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl md:text-[44px]">
+                How To Play            </h2>
+            <p class="mt-4 text-base text-muted-foreground md:text-lg">
+                  Begin Your Game Now            </p>
+        </div>
+
+        <div class="mt-16 relative">
+            <!-- Timeline connection line -->
+            <div class="pointer-events-none absolute left-0 right-0 top-8 hidden h-px bg-gradient-to-r from-transparent via-hairline to-transparent lg:block"></div>
+            
+            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                                    <div class="card-premium p-6 text-center flex flex-col items-center">
+                        <div class="relative grid h-16 w-16 place-items-center rounded-2xl bg-white ring-1 ring-hairline shadow-soft">
+                            <i class="fa fa-download text-xl text-brand"></i>
+                            <div class="absolute -right-2 -top-2 grid h-6 w-6 place-items-center rounded-full bg-ink text-[11px] font-bold text-white">
+                                1                            </div>
+                        </div>
+                        <h3 class="mt-5 text-base font-bold text-ink">Download App</h3>
+                        <p class="mt-2 text-xs text-muted-foreground leading-relaxed">Install SkillClash directly from our secure website in seconds.</p>
+                    </div>
+                                    <div class="card-premium p-6 text-center flex flex-col items-center">
+                        <div class="relative grid h-16 w-16 place-items-center rounded-2xl bg-white ring-1 ring-hairline shadow-soft">
+                            <i class="fa fa-user-plus text-xl text-brand"></i>
+                            <div class="absolute -right-2 -top-2 grid h-6 w-6 place-items-center rounded-full bg-ink text-[11px] font-bold text-white">
+                                2                            </div>
+                        </div>
+                        <h3 class="mt-5 text-base font-bold text-ink">Create Account</h3>
+                        <p class="mt-2 text-xs text-muted-foreground leading-relaxed">Sign up quickly with mobile verification and set your profile.</p>
+                    </div>
+                                    <div class="card-premium p-6 text-center flex flex-col items-center">
+                        <div class="relative grid h-16 w-16 place-items-center rounded-2xl bg-white ring-1 ring-hairline shadow-soft">
+                            <i class="fa fa-gamepad text-xl text-brand"></i>
+                            <div class="absolute -right-2 -top-2 grid h-6 w-6 place-items-center rounded-full bg-ink text-[11px] font-bold text-white">
+                                3                            </div>
+                        </div>
+                        <h3 class="mt-5 text-base font-bold text-ink">Join Contest</h3>
+                        <p class="mt-2 text-xs text-muted-foreground leading-relaxed">Pick your Free Fire mode, pay entry fees, and enter the Custom lobby.</p>
+                    </div>
+                                    <div class="card-premium p-6 text-center flex flex-col items-center">
+                        <div class="relative grid h-16 w-16 place-items-center rounded-2xl bg-white ring-1 ring-hairline shadow-soft">
+                            <i class="fa fa-trophy text-xl text-brand"></i>
+                            <div class="absolute -right-2 -top-2 grid h-6 w-6 place-items-center rounded-full bg-ink text-[11px] font-bold text-white">
+                                4                            </div>
+                        </div>
+                        <h3 class="mt-5 text-base font-bold text-ink">Win Cash</h3>
+                        <p class="mt-2 text-xs text-muted-foreground leading-relaxed">Climb leaderboards, get match scores tracked, and withdraw instantly.</p>
+                    </div>
+                            </div>
+        </div>
+
+    </div>
+</section>
+
+<!--======== COMPARE ADVANTAGE SECTION ========-->
+<section class="py-24 md:py-32 border-b border-hairline">
+    <div class="container-x">
+        <div class="mx-auto max-w-2xl text-center mb-14">
+            <div class="mb-3 inline-flex chip">Why SkillClash</div>
+            <h2 class="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl md:text-[44px]">
+                The <span class="text-gradient-brand">unfair advantage</span> other platforms don't offer
+            </h2>
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-2 max-w-4xl mx-auto">
+            <!-- SkillClash -->
+            <div class="card-premium p-7 md:p-8 relative overflow-hidden ring-2 ring-brand/20">
+                <div class="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-brand/10 blur-3xl"></div>
+                <div class="flex items-center gap-3">
+                    <span class="font-display text-lg font-extrabold text-ink">Skill<span class="text-brand">Clash</span></span>
+                    <span class="chip !text-brand !border-brand/30 !bg-brand/5">Recommended</span>
+                </div>
+                <ul class="mt-6 space-y-3.5">
+                                            <li class="flex items-center gap-3 text-sm font-semibold text-ink">
+                            <span class="grid h-6 w-6 place-items-center rounded-full bg-success/15 text-success">✓</span>
+                            <span>FairPlay Matchmaking System</span>
+                        </li>
+                                            <li class="flex items-center gap-3 text-sm font-semibold text-ink">
+                            <span class="grid h-6 w-6 place-items-center rounded-full bg-success/15 text-success">✓</span>
+                            <span>Instant 2s Wallet Withdrawals</span>
+                        </li>
+                                            <li class="flex items-center gap-3 text-sm font-semibold text-ink">
+                            <span class="grid h-6 w-6 place-items-center rounded-full bg-success/15 text-success">✓</span>
+                            <span>100% Real Skill Matches</span>
+                        </li>
+                                            <li class="flex items-center gap-3 text-sm font-semibold text-ink">
+                            <span class="grid h-6 w-6 place-items-center rounded-full bg-success/15 text-success">✓</span>
+                            <span> Segregated User Wallets</span>
+                        </li>
+                                            <li class="flex items-center gap-3 text-sm font-semibold text-ink">
+                            <span class="grid h-6 w-6 place-items-center rounded-full bg-success/15 text-success">✓</span>
+                            <span>24×7 Premium WhatsApp Support</span>
+                        </li>
+                                            <li class="flex items-center gap-3 text-sm font-semibold text-ink">
+                            <span class="grid h-6 w-6 place-items-center rounded-full bg-success/15 text-success">✓</span>
+                            <span>Daily Cash Championships</span>
+                        </li>
+                                    </ul>
+            </div>
+
+            <!-- Others -->
+            <div class="rounded-3xl border border-hairline bg-secondary/60 p-7 md:p-8">
+                <div class="text-sm font-bold uppercase tracking-widest text-muted-foreground">Other Platforms</div>
+                <ul class="mt-6 space-y-3.5">
+                                            <li class="flex items-center gap-3 text-sm text-muted-foreground font-medium">
+                            <span class="grid h-6 w-6 place-items-center rounded-full bg-red-100 text-red-500">✗</span>
+                            <span>Delayed/Manual Withdrawals</span>
+                        </li>
+                                            <li class="flex items-center gap-3 text-sm text-muted-foreground font-medium">
+                            <span class="grid h-6 w-6 place-items-center rounded-full bg-red-100 text-red-500">✗</span>
+                            <span>Bots/Smurfs allowed in Lobbies</span>
+                        </li>
+                                            <li class="flex items-center gap-3 text-sm text-muted-foreground font-medium">
+                            <span class="grid h-6 w-6 place-items-center rounded-full bg-red-100 text-red-500">✗</span>
+                            <span>Unresponsive customer service</span>
+                        </li>
+                                            <li class="flex items-center gap-3 text-sm text-muted-foreground font-medium">
+                            <span class="grid h-6 w-6 place-items-center rounded-full bg-red-100 text-red-500">✗</span>
+                            <span>Unstable tournament room setups</span>
+                        </li>
+                                            <li class="flex items-center gap-3 text-sm text-muted-foreground font-medium">
+                            <span class="grid h-6 w-6 place-items-center rounded-full bg-red-100 text-red-500">✗</span>
+                            <span>Complicated wallet limits</span>
+                        </li>
+                                            <li class="flex items-center gap-3 text-sm text-muted-foreground font-medium">
+                            <span class="grid h-6 w-6 place-items-center rounded-full bg-red-100 text-red-500">✗</span>
+                            <span>High hidden transaction fees</span>
+                        </li>
+                                    </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--======== LIVE STATS SECTION ========-->
+<section id="leaderboard" class="relative overflow-hidden bg-ink text-white py-20 md:py-28">
+    <div class="pointer-events-none absolute inset-0 opacity-40" style="background-image: radial-gradient(600px 300px at 20% 20%, oklch(0.52 0.24 285 / 0.4), transparent), radial-gradient(600px 300px at 80% 80%, oklch(0.82 0.16 82 / 0.35), transparent);"></div>
+    <div class="container-x relative">
+        <div class="mx-auto max-w-2xl text-center">
+            <div class="chip chip-white">The scoreboard, live</div>
+            <h2 class="mt-4 text-3xl font-extrabold sm:text-4xl md:text-5xl">
+                A platform players <span class="text-gradient-gold">win on</span>, every day.
+            </h2>
+        </div>
+        <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                            <div class="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur text-center">
+                    <div class="text-3xl font-extrabold sm:text-4xl text-gradient-gold">
+                        <span class="counter-value"
+                             data-target="21500000"
+                             data-prefix="₹"
+                             data-suffix="">
+                            ₹21,500,000                        </span>
+                    </div>
+                    <div class="mt-1.5 text-sm text-white/70">Total Rewards Distributed</div>
+                </div>
+                            <div class="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur text-center">
+                    <div class="text-3xl font-extrabold sm:text-4xl text-gradient-gold">
+                        <span class="counter-value"
+                             data-target="312000"
+                             data-prefix=""
+                             data-suffix="+">
+                            312,000+                        </span>
+                    </div>
+                    <div class="mt-1.5 text-sm text-white/70">Total Players</div>
+                </div>
+                            <div class="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur text-center">
+                    <div class="text-3xl font-extrabold sm:text-4xl text-gradient-gold">
+                        <span class="counter-value"
+                             data-target="1240000"
+                             data-prefix=""
+                             data-suffix="+">
+                            1,240,000+                        </span>
+                    </div>
+                    <div class="mt-1.5 text-sm text-white/70">Matches Played</div>
+                </div>
+                            <div class="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur text-center">
+                    <div class="text-3xl font-extrabold sm:text-4xl text-gradient-gold">
+                        <span class="counter-value"
+                             data-target="10800"
+                             data-prefix=""
+                             data-suffix="+">
+                            10,800+                        </span>
+                    </div>
+                    <div class="mt-1.5 text-sm text-white/70">Daily Winners</div>
+                </div>
+                    </div>
+    </div>
+</section>
+
+
+<!--======== TESTIMONIALS SECTION ========-->
+<section class="bg-surface py-24 md:py-32 border-y border-hairline">
+    <div class="container-x">
+        <div class="mx-auto max-w-2xl text-center mb-14">
+            <div class="mb-3 inline-flex chip">Verified players</div>
+            <h2 class="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl md:text-[44px]">
+                Real players. <span class="text-gradient-brand">Real winnings.</span>
+            </h2>
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+                            <div class="rounded-3xl border border-hairline bg-white/70 p-6 shadow-soft backdrop-blur transition hover:-translate-y-1 hover:shadow-lift flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3">
+                            <div class="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-brand to-gold text-sm font-bold text-white uppercase">
+                                A                            </div>
+                            <div>
+                                <div class="flex items-center gap-1 text-sm font-bold text-ink">
+                                    Arjun R.                                    <span class="inline-flex h-3.5 w-3.5 items-center justify-center rounded-full bg-brand text-[8px] text-white">✓</span>
+                                </div>
+                                <div class="text-xs text-muted-foreground">Bengaluru</div>
+                            </div>
+                        </div>
+
+                        <div class="mt-3 flex text-amber-400 text-xs gap-0.5">
+                            ★★★★★
+                        </div>
+                        <p class="mt-3 text-xs leading-relaxed text-ink/80">Won ₹8,400 in a Clash Squad tournament — withdrew to UPI in under 2 minutes. Incredibly responsive and premium platform.</p>
+                    </div>
+
+                    <div class="mt-4 flex items-center justify-between border-t border-hairline pt-3 text-xs">
+                        <span class="text-muted-foreground">Total Cash Won</span>
+                        <span class="font-bold text-gradient-gold">₹8,400</span>
+                    </div>
+                </div>
+                            <div class="rounded-3xl border border-hairline bg-white/70 p-6 shadow-soft backdrop-blur transition hover:-translate-y-1 hover:shadow-lift flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3">
+                            <div class="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-brand to-gold text-sm font-bold text-white uppercase">
+                                P                            </div>
+                            <div>
+                                <div class="flex items-center gap-1 text-sm font-bold text-ink">
+                                    Priya S.                                    <span class="inline-flex h-3.5 w-3.5 items-center justify-center rounded-full bg-brand text-[8px] text-white">✓</span>
+                                </div>
+                                <div class="text-xs text-muted-foreground">Mumbai</div>
+                            </div>
+                        </div>
+
+                        <div class="mt-3 flex text-amber-400 text-xs gap-0.5">
+                            ★★★★★
+                        </div>
+                        <p class="mt-3 text-xs leading-relaxed text-ink/80">FairPlay is 100% legitimate. Lobbies are matched correctly based on skill and I have never faced any hackers.</p>
+                    </div>
+
+                    <div class="mt-4 flex items-center justify-between border-t border-hairline pt-3 text-xs">
+                        <span class="text-muted-foreground">Total Cash Won</span>
+                        <span class="font-bold text-gradient-gold">₹3,200</span>
+                    </div>
+                </div>
+                            <div class="rounded-3xl border border-hairline bg-white/70 p-6 shadow-soft backdrop-blur transition hover:-translate-y-1 hover:shadow-lift flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3">
+                            <div class="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-brand to-gold text-sm font-bold text-white uppercase">
+                                R                            </div>
+                            <div>
+                                <div class="flex items-center gap-1 text-sm font-bold text-ink">
+                                    Rahul K.                                    <span class="inline-flex h-3.5 w-3.5 items-center justify-center rounded-full bg-brand text-[8px] text-white">✓</span>
+                                </div>
+                                <div class="text-xs text-muted-foreground">Delhi</div>
+                            </div>
+                        </div>
+
+                        <div class="mt-3 flex text-amber-400 text-xs gap-0.5">
+                            ★★★★★
+                        </div>
+                        <p class="mt-3 text-xs leading-relaxed text-ink/80">This is easily the cleanest UI in competitive eSports. Wallets, matches, customer support are just one click away.</p>
+                    </div>
+
+                    <div class="mt-4 flex items-center justify-between border-t border-hairline pt-3 text-xs">
+                        <span class="text-muted-foreground">Total Cash Won</span>
+                        <span class="font-bold text-gradient-gold">₹15,600</span>
+                    </div>
+                </div>
+                            <div class="rounded-3xl border border-hairline bg-white/70 p-6 shadow-soft backdrop-blur transition hover:-translate-y-1 hover:shadow-lift flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3">
+                            <div class="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-brand to-gold text-sm font-bold text-white uppercase">
+                                A                            </div>
+                            <div>
+                                <div class="flex items-center gap-1 text-sm font-bold text-ink">
+                                    Ananya M.                                    <span class="inline-flex h-3.5 w-3.5 items-center justify-center rounded-full bg-brand text-[8px] text-white">✓</span>
+                                </div>
+                                <div class="text-xs text-muted-foreground">Hyderabad</div>
+                            </div>
+                        </div>
+
+                        <div class="mt-3 flex text-amber-400 text-xs gap-0.5">
+                            ★★★★★
+                        </div>
+                        <p class="mt-3 text-xs leading-relaxed text-ink/80">Had an issue with room ID, support resolved it on WhatsApp in under 2 minutes. Platform support is excellent.</p>
+                    </div>
+
+                    <div class="mt-4 flex items-center justify-between border-t border-hairline pt-3 text-xs">
+                        <span class="text-muted-foreground">Total Cash Won</span>
+                        <span class="font-bold text-gradient-gold">₹2,100</span>
+                    </div>
+                </div>
+                    </div>
+    </div>
+</section>
+
+<!--======== FAQ SECTION ========-->
+<section id="support" class="py-24 md:py-32">
+    <div class="container-x max-w-3xl">
+        <div class="mx-auto max-w-2xl text-center mb-12">
+            <div class="mb-3 inline-flex chip">FAQ</div>
+            <h2 class="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl md:text-[44px]">
+                Got Questions? We got answers.
+            </h2>
+        </div>
+
+        <div class="space-y-3">
+                            <div class="card-premium overflow-hidden">
+                    <button
+                        onclick="toggleAccordion(0)"
+                        class="flex w-full items-center justify-between gap-4 p-5 text-left focus:outline-none"
+                    >
+                        <span class="text-sm font-semibold text-ink md:text-base">Is SkillClash legal and skill-based?</span>
+                        <svg id="accordion-icon-0" class="h-4 w-4 text-muted-foreground transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="accordion-body-0" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <p class="px-5 pb-5 text-xs sm:text-sm leading-relaxed text-muted-foreground border-t border-hairline pt-3">
+                            Yes. Every tournament outcome depends entirely on player skill, matchmaking levels, and gameplay performance — not luck or chance.                        </p>
+                    </div>
+                </div>
+                            <div class="card-premium overflow-hidden">
+                    <button
+                        onclick="toggleAccordion(1)"
+                        class="flex w-full items-center justify-between gap-4 p-5 text-left focus:outline-none"
+                    >
+                        <span class="text-sm font-semibold text-ink md:text-base">How fast are cash withdrawals processed?</span>
+                        <svg id="accordion-icon-1" class="h-4 w-4 text-muted-foreground transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="accordion-body-1" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <p class="px-5 pb-5 text-xs sm:text-sm leading-relaxed text-muted-foreground border-t border-hairline pt-3">
+                            Withdrawals are instant. Verified players can withdraw winning amounts to UPI or Bank in under 2 seconds, 24×7.                        </p>
+                    </div>
+                </div>
+                            <div class="card-premium overflow-hidden">
+                    <button
+                        onclick="toggleAccordion(2)"
+                        class="flex w-full items-center justify-between gap-4 p-5 text-left focus:outline-none"
+                    >
+                        <span class="text-sm font-semibold text-ink md:text-base">How does the anti-cheat system work?</span>
+                        <svg id="accordion-icon-2" class="h-4 w-4 text-muted-foreground transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="accordion-body-2" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <p class="px-5 pb-5 text-xs sm:text-sm leading-relaxed text-muted-foreground border-t border-hairline pt-3">
+                            We employ in-house anti-cheat and behaviour engines to inspect client hacks. Any suspicious client modifications result in instant ban.                        </p>
+                    </div>
+                </div>
+                            <div class="card-premium overflow-hidden">
+                    <button
+                        onclick="toggleAccordion(3)"
+                        class="flex w-full items-center justify-between gap-4 p-5 text-left focus:outline-none"
+                    >
+                        <span class="text-sm font-semibold text-ink md:text-base">How do I join a custom room lobby?</span>
+                        <svg id="accordion-icon-3" class="h-4 w-4 text-muted-foreground transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="accordion-body-3" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <p class="px-5 pb-5 text-xs sm:text-sm leading-relaxed text-muted-foreground border-t border-hairline pt-3">
+                            Simply join a tournament, wait for the lobby countdown, and the custom room ID & password will appear in your match card.                        </p>
+                    </div>
+                </div>
+                            <div class="card-premium overflow-hidden">
+                    <button
+                        onclick="toggleAccordion(4)"
+                        class="flex w-full items-center justify-between gap-4 p-5 text-left focus:outline-none"
+                    >
+                        <span class="text-sm font-semibold text-ink md:text-base">Is my wallet deposit secure?</span>
+                        <svg id="accordion-icon-4" class="h-4 w-4 text-muted-foreground transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="accordion-body-4" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <p class="px-5 pb-5 text-xs sm:text-sm leading-relaxed text-muted-foreground border-t border-hairline pt-3">
+                            Yes. Your wallet balance is segregated, payments are processed over SSL secure layers, and funds can be retrieved anytime.                        </p>
+                    </div>
+                </div>
+                    </div>
+    </div>
+</section>
+
+<!--======== COMMUNITY SECTION ========-->
+<section class="bg-surface py-24 md:py-32 border-t border-hairline">
+    <div class="container-x">
+        <div class="mx-auto max-w-2xl text-center mb-14">
+            <div class="mb-3 inline-flex chip">Community</div>
+            <h2 class="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl md:text-[44px]">
+                Join <span class="text-gradient-brand">3L+ players</span> in the arena
+            </h2>
+        </div>
+
+        <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
+                            <a href="https://whatsapp.com/channel/0029Vax1Q9RKwqSLwrqGeZ2V" target="_blank" rel="noopener noreferrer" class="card-premium card-premium-hover p-4 flex items-center gap-3" style="text-decoration: none;">
+                    <div class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-emerald-50 text-emerald-600">
+                        <i class="fa fa-whatsapp text-lg"></i>
+                    </div>
+                    <div class="min-w-0 text-left">
+                        <div class="text-sm font-bold text-ink">WhatsApp</div>
+                        <div class="text-[11px] text-muted-foreground mt-0.5 truncate">Join Updates</div>
+                    </div>
+                </a>
+                            <a href="https://t.me/SkillClashUpdates" target="_blank" rel="noopener noreferrer" class="card-premium card-premium-hover p-4 flex items-center gap-3" style="text-decoration: none;">
+                    <div class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-sky-50 text-sky-600">
+                        <i class="fa fa-telegram text-lg"></i>
+                    </div>
+                    <div class="min-w-0 text-left">
+                        <div class="text-sm font-bold text-ink">Telegram</div>
+                        <div class="text-[11px] text-muted-foreground mt-0.5 truncate">@skillclash</div>
+                    </div>
+                </a>
+                            <a href="https://www.instagram.com/skillclash._?igsh=cXp5aDFtaWJ2ZW0z" target="_blank" rel="noopener noreferrer" class="card-premium card-premium-hover p-4 flex items-center gap-3" style="text-decoration: none;">
+                    <div class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-pink-50 text-pink-600">
+                        <i class="fa fa-instagram text-lg"></i>
+                    </div>
+                    <div class="min-w-0 text-left">
+                        <div class="text-sm font-bold text-ink">Instagram</div>
+                        <div class="text-[11px] text-muted-foreground mt-0.5 truncate">@skillclash.in</div>
+                    </div>
+                </a>
+                            <a href="https://youtube.com/@skillclashesports?si=6_NiNS1PDVdKPIt_" target="_blank" rel="noopener noreferrer" class="card-premium card-premium-hover p-4 flex items-center gap-3" style="text-decoration: none;">
+                    <div class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-red-50 text-red-600">
+                        <i class="fa fa-youtube-play text-lg"></i>
+                    </div>
+                    <div class="min-w-0 text-left">
+                        <div class="text-sm font-bold text-ink">YouTube</div>
+                        <div class="text-[11px] text-muted-foreground mt-0.5 truncate">SkillClash TV</div>
+                    </div>
+                </a>
+                            <a href="https://discord.gg/skillclash" target="_blank" rel="noopener noreferrer" class="card-premium card-premium-hover p-4 flex items-center gap-3" style="text-decoration: none;">
+                    <div class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-indigo-50 text-indigo-600">
+                        <i class="fa fa-comments text-lg"></i>
+                    </div>
+                    <div class="min-w-0 text-left">
+                        <div class="text-sm font-bold text-ink">Discord</div>
+                        <div class="text-[11px] text-muted-foreground mt-0.5 truncate">Elite Lounge</div>
+                    </div>
+                </a>
+                    </div>
+    </div>
+</section>
+<!--======== DOWNLOAD CTA BANNER ========-->
+<section id="download" class="py-24 md:py-32">
+    <div class="container-x">
+        <div class="relative overflow-hidden rounded-[32px] border border-hairline bg-gradient-to-br from-ink to-indigo-950 p-10 text-white md:p-16">
+            <div class="pointer-events-none absolute inset-0 opacity-70" style="background-image: radial-gradient(500px 300px at 15% 20%, oklch(0.52 0.24 285 / 0.55), transparent), radial-gradient(500px 300px at 90% 90%, oklch(0.82 0.16 82 / 0.4), transparent);"></div>
+            <div class="relative grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-center">
+                <div>
+                    <div class="chip chip-white">
+                        <i class="fa fa-trophy text-amber-400 mr-1"></i> Your next win is one match away
+                    </div>
+                    <h2 class="mt-4 text-3xl font-extrabold leading-tight sm:text-4xl md:text-5xl">
+                        Download SkillClash. <span class="text-gradient-gold">Play. Win. Withdraw.</span>
+                    </h2>
+                    <p class="mt-4 max-w-xl text-white/70 text-sm md:text-base leading-relaxed">
+                        Join 3L++ Indian players competing in skill-based Free Fire tournaments — every hour, every day.
+                    </p>
+                    <div class="mt-8 flex flex-wrap gap-3">
+                        <a href="https://github.com/aaryansingh91/test/raw/refs/heads/main/SkillClash.apk" class="btn-brand">
+                            <i class="fa fa-download"></i> Download for Android
+                        </a>
+                        <a href="#howtoplay" class="btn-ghost-white">
+                            <i class="fa fa-apple"></i> Soon For IOS
+                        </a>
+                    </div>
+                </div>
+                <div class="relative mx-auto h-56 w-56 md:h-64 md:w-64 flex items-center justify-center">
+                    <div class="absolute inset-0 rounded-full bg-brand-40 blur-3xl"></div>
+                    <div class="relative h-144 w-144 md:h-52 md:w-52 rounded-full cta-logo-orb flex items-center justify-center animate-float">
+                        <img src="https://skillclash.site/uploads/company_image/thumb/IMG-20260704-WA0055.jpeg" alt="SkillClash Logo" class="h-full w-full p-8 object-contain" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Typewriter Text Script -->
+<script src="https://skillclash.site/application/views/themes/front/assest/js/typed.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var typed = new Typed('#typed', {
+            strings: ['Free Fire Esports Platform - Refer Code - SkillClash'],
+            typeSpeed: 50,
+            loop: false,
+        });
+
+        // Scroll-Triggered Counter Animation
+        const counterElements = document.querySelectorAll('.counter-value');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.getAttribute('data-target'), 10);
+                    const prefix = el.getAttribute('data-prefix') || '';
+                    const suffix = el.getAttribute('data-suffix') || '';
+                    const duration = 1600; // ms
+                    let start = null;
+
+                    const step = (timestamp) => {
+                        if (!start) start = timestamp;
+                        const progress = Math.min(1, (timestamp - start) / duration);
+                        // Easing formula (easeOutCubic)
+                        const easeProgress = 1 - Math.pow(1 - progress, 3);
+                        const currentVal = Math.floor(target * easeProgress);
+                        
+                        el.textContent = prefix + currentVal.toLocaleString('en-IN') + suffix;
+                        
+                        if (progress < 1) {
+                            window.requestAnimationFrame(step);
+                        }
+                    };
+                    window.requestAnimationFrame(step);
+                    observer.unobserve(el);
+                }
+            });
+        }, { threshold: 0.4 });
+
+        counterElements.forEach(el => observer.observe(el));
+    });
+
+    // Custom Tabs Switcher
+    function switchTab(tabId) {
+        // Hide all panes
+        const panes = document.querySelectorAll('.tab-pane-content');
+        panes.forEach(pane => pane.classList.add('hidden'));
+
+        // Show selected pane
+        document.getElementById('tab-pane-' + tabId).classList.remove('hidden');
+
+        // Reset all buttons style
+        const buttons = document.querySelectorAll('.tab-btn');
+        buttons.forEach(btn => {
+            btn.classList.remove('bg-brand', 'text-white', 'shadow-lift');
+            btn.classList.add('text-muted-foreground', 'hover:bg-secondary', 'hover:text-ink');
+        });
+
+        // Set active button style
+        const activeBtn = document.getElementById('tab-link-' + tabId);
+        activeBtn.classList.remove('text-muted-foreground', 'hover:bg-secondary', 'hover:text-ink');
+        activeBtn.classList.add('bg-brand', 'text-white', 'shadow-lift');
+    }
+
+    // Accordion Toggle
+    function toggleAccordion(idx) {
+        const body = document.getElementById('accordion-body-' + idx);
+        const icon = document.getElementById('accordion-icon-' + idx);
+        
+        if (body.style.maxHeight && body.style.maxHeight !== '0px') {
+            body.style.maxHeight = '0px';
+            icon.classList.remove('rotate-180');
+        } else {
+            body.style.maxHeight = body.scrollHeight + 'px';
+            icon.classList.add('rotate-180');
+        }
+    }
+    
+        // =============================================
+    // SMOOTH SCROLL FOR ANCHOR LINKS
+    // =============================================
+    document.addEventListener('DOMContentLoaded', function() {
+        // Select all anchor links that start with #
+        const anchorLinks = document.querySelectorAll('a[href^="#"]');
+        
+        anchorLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Get the target element ID from the href attribute
+                const targetId = this.getAttribute('href');
+                
+                // Skip if it's just "#" or empty
+                if (targetId === '#' || targetId === '') return;
+                
+                // Get the target element
+                const targetElement = document.querySelector(targetId);
+                
+                // If target element exists, prevent default and scroll smoothly
+                if (targetElement) {
+                    e.preventDefault();
+                    
+                    // Get the header height for offset (if you have a fixed header)
+                    const header = document.querySelector('header');
+                    const headerHeight = header ? header.offsetHeight : 0;
+                    
+                    // Calculate the target position with offset
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    
+                    // Smooth scroll to the target
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update URL without causing a page reload (optional)
+                    history.pushState(null, null, targetId);
+                }
+            });
+        });
+    });
+</script>
+
+             <!--FOOER AREA-->
+        <!-- Footer -->
+<footer class="border-t border-hairline bg-white py-16">
+    <div class="container-x">
+        <div class="grid gap-10 lg:grid-cols-[1.3fr_2fr]">
+            <!-- Left Info Column -->
+            <div>
+                <!-- Brand logo wordmark -->
+                <a href="https://skillclash.site/" class="flex items-center gap-2.5" aria-label="SkillClash home">
+                    <div class="relative h-9 w-9">
+                        <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand/25 to-gold/20 blur-xl opacity-70"></div>
+                        <div class="relative flex h-full w-full items-center justify-center rounded-2xl bg-white ring-1 ring-hairline p-1">
+                            <img src="https://skillclash.site/uploads/company_image/thumb/IMG-20260704-WA0055.jpeg" alt="SkillClash logo" class="h-full w-full object-contain" />
+                        </div>
+                    </div>
+                    <span class="font-display text-lg font-extrabold tracking-tight text-ink">
+                        Skill<span class="text-brand">Clash</span>
+                    </span>
+                </a>
+                
+                <p class="mt-4 max-w-sm text-sm text-muted-foreground leading-relaxed">
+                    <p><strong>SKILL</strong> <strong>CLASH</strong> is a skill-based e-sports tournament platform created especially for Free Fire MAX players. Compete in exciting modes like Battle Royale, Clash Squad, Lone Wolf, and many more coming soon.</p>
+
+<p>&nbsp;</p>
+
+<p>Players can join free and paid tournaments, win coins, climb the leaderboards, and redeem their winnings as UPI cash or Google Play gift cards.</p>
+
+<p>&nbsp;</p>
+
+<p>Our simple, user-friendly interface, fair-play systems, and Automatic Host Activity Detection work together to deliver a smooth, transparent, and secure tournament experience for every player.</p>
+                </p>
+                
+                <!-- Social links -->
+                <div class="mt-6 flex items-center gap-2">
+                                                                                                        <a href="https://t.me/skillclashcare" class="grid h-9 w-9 place-items-center rounded-full border border-hairline text-muted-foreground transition hover:border-brand/40 hover:text-brand" aria-label="Google">
+                            <i class="fa fa-google-plus"></i>
+                        </a>
+                                    </div>
+            </div>
+            
+            <!-- Right Columns Grid -->
+            <div class="grid grid-cols-2 gap-8 sm:grid-cols-3">
+                <!-- Column 1: Platform -->
+                <div>
+                    <div class="text-xs font-bold uppercase tracking-widest text-ink mb-4">Platform</div>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://skillclash.site/#games" class="text-sm text-muted-foreground transition hover:text-ink font-medium">Games</a></li>
+                        <li><a href="https://skillclash.site/#tournaments" class="text-sm text-muted-foreground transition hover:text-ink font-medium">Tournaments</a></li>
+                        <li><a href="https://skillclash.site/#rewards" class="text-sm text-muted-foreground transition hover:text-ink font-medium">Rewards</a></li>
+                        <li><a href="https://skillclash.site/#leaderboard" class="text-sm text-muted-foreground transition hover:text-ink font-medium">Stats</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 2: Pages -->
+                <div>
+                    <div class="text-xs font-bold uppercase tracking-widest text-ink mb-4">Quick Links</div>
+                    <ul class="space-y-2.5">
+                                            </ul>
+                </div>
+                
+                <!-- Column 3: Support -->
+                <div>
+                    <div class="text-xs font-bold uppercase tracking-widest text-ink mb-4">Support</div>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://skillclash.site/#support" class="text-sm text-muted-foreground transition hover:text-ink font-medium">Help Center</a></li>
+                        <li><a href="https://skillclash.site/#support" class="text-sm text-muted-foreground transition hover:text-ink font-medium">Contact Us</a></li>
+                        <li><a href="https://skillclash.site/#download" class="text-sm text-muted-foreground transition hover:text-ink font-medium">Get App</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom bar -->
+        <div class="mt-12 flex flex-col items-start justify-between gap-4 border-t border-hairline pt-8 text-xs text-muted-foreground sm:flex-row sm:items-center">
+            <div>
+                <p><p><strong>Copyright &copy; 2026&nbsp;All right Reversed.</strong></p>
+
+<p><strong>Do Work Fairly Because One Mistake = Big Regret &trade;</strong></p>
+
+<p>&nbsp;</p>
+</p>
+            </div>
+            <div class="flex items-center gap-2 font-semibold">
+                <span class="inline-flex h-2 w-2 rounded-full bg-success"></span>
+                FairPlay Certified · 18+ · Play Responsibly
+            </div>
+        </div>
+    </div>
+</footer>        <!--FOOER AREA END-->
+        <!--====== SCRIPTS JS ======-->
+<!--script src="jquery-3.4.1.min.js"></script-->
+<!--script src="jquery.validate.min.js"></script-->
+<!--script src="bootstrap.min.js"></script-->
+<!--script src="owl.carousel.min.js"></script-->
+<!--script src="jquery.magnific-popup.min.js"></script-->
+<!--script src="custom.js"></script-->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.7.0/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+
+<script>
+
+    function logout() {
+    }
+
+
+    $(document).ready(function () {
+        $('.owl-carousel').owlCarousel({
+                        rtl:false,
+                        
+            loop: true,
+            margin: 10,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: true
+                },
+                600: {
+                    items: 3,
+                    nav: true
+                },
+                1000: {
+                    items: 4,
+                    nav: true,
+                    loop: false,
+                    margin: 20
+                }
+            }
+        });
+        $('.popup-link').magnificPopup({
+            removalDelay: 300,
+            type: 'image',
+            callbacks: {
+                beforeOpen: function () {
+                    this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure ' + this.st.el.attr('data-effect'));
+                },
+                beforeClose: function () {
+                    $('.mfp-figure').addClass('fadeOut');
+                }
+            },
+            gallery: {
+                enabled: true //enable gallery mode
+            }
+        });
+
+        $("#contact-form").validate({
+            rules: {
+                'fname': {
+                    required: true,
+                },
+                'email': {
+                    required: true,
+                },
+                'subject': {
+                    required: true,
+                },
+                'message': {
+                    required: true,
+                }
+            },
+            messages: {
+                'fname': {
+                    required: 'Please enter FirstName',
+                },
+                'email': {
+                    required: 'Please enter email address',
+                },
+                'subject': {
+                    required: 'Please enter Subject',
+                },
+                'message': {
+                    required: 'Please enter message',
+                }
+            },
+            errorPlacement: function (error, element)
+            {
+                error.insertAfter(element);
+            },
+        });
+    });
+    $(document).on('submit', '#contact-form', function () {
+        $.ajax({
+            url: 'https://skillclash.site/page/contact',
+            type: 'post',
+            data: $(this).serialize(),
+            success: function (data) {
+                if (data)
+                {
+                    $("#success").html('<div class="alert alert-success">Message <strong>successfully</strong> sent!</div>');
+                    $('#fname').val('');
+                    $('#email').val('');
+                    $('#phone').val('');
+                    $('#subject').val('');
+                    $('#msg').val('');
+                } else {
+                    $('#success').html('<div class="alert alert-danger">Message <strong>not</strong> sent! Please Try Again!</div>');
+                }
+            }
+        });
+        return false;
+    });
+</script>
+<!--<script src="https://skillclash.site/application/views/themes/front/assest/js/cookit.js"></script>-->
+
+        
+    </body> 
+        
+</html>
