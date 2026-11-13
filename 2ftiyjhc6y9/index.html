@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>BOOYAH ZONE</title>
+    <meta name="description" content="BOOYAH ZONE - Your Competitive Gaming Destination. Join Daily Tournaments, Earn Real Rewards Instantly, And Compete On A Skill-Based Platform.">
+    <meta name="keywords" content="BOOYAH ZONE, Esports, Tournaments, Free Fire, Mobile Gaming, Earn Money">
+    <meta property="og:title" content="BOOYAH ZONE">
+    <meta property="og:description" content="Play. Compete. Win. The ultimate skill-based gaming platform.">
+    <meta property="og:type" content="website">
+    
+    <link id="dynamic-favicon" rel="shortcut icon" type="image/png" href="">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/slicknav.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #02050b;
+            --bg-secondary: #0a0f1c;
+            --bg-card: rgba(20, 30, 48, 0.6);
+            --primary-blue: #2979ff;
+            --accent-cyan: #00e5ff;
+            --text-white: #ffffff;
+            --text-gray: #b0b8c8;
+            --gradient-main: linear-gradient(135deg, #2979ff 0%, #00e5ff 100%);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+            --neon-glow: 0 0 15px rgba(0, 229, 255, 0.4);
+            --font-main: 'Poppins', sans-serif;
+            --font-head: 'Rajdhani', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-dark);
+            color: var(--text-gray);
+            overflow-x: hidden;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-head);
+            color: var(--text-white);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        a { text-decoration: none !important; transition: 0.3s; }
+        
+        header.header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            background: rgba(2, 5, 11, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .logo img {
+            max-width: 150px;
+            max-height: 50px;
+            object-fit: contain;
+            transition: 0.3s;
+            border-radius: 8px;
+        }
+
+        .mainmenu ul { list-style: none; padding: 0; margin: 0; text-align: right; }
+        .mainmenu ul li { display: inline-block; margin-left: 25px; }
+        .mainmenu ul li a {
+            color: var(--text-white);
+            font-size: 15px;
+            font-weight: 600;
+            position: relative;
+            padding: 5px 0;
+            text-transform: uppercase;
+        }
+        .mainmenu ul li a::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: var(--accent-cyan);
+            transition: 0.3s;
+            box-shadow: var(--neon-glow);
+        }
+        .mainmenu ul li a:hover::before, .mainmenu ul li a.active::before { width: 100%; }
+        .mainmenu ul li a:hover { color: var(--accent-cyan); text-shadow: var(--neon-glow); }
+
+        .slicknav_menu { background: transparent; padding: 5px 0; display: none; }
+        .slicknav_btn { background-color: rgba(255,255,255,0.1); border-radius: 4px; margin-top: 5px; }
+        .slicknav_nav {
+            background: var(--bg-secondary);
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            margin-top: 15px;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            border-bottom: 2px solid var(--accent-cyan);
+            z-index: 999;
+        }
+        .slicknav_nav a {
+            color: #fff;
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-weight: 600;
+        }
+        .slicknav_nav a:hover { background: rgba(41, 121, 255, 0.1); color: var(--accent-cyan); }
+
+        .hero-area {
+            background-color: var(--bg-dark);
+            background-image: 
+                linear-gradient(rgba(2, 5, 11, 0.9), rgba(2, 5, 11, 0.95)),
+                url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            padding: 160px 0 100px; 
+            overflow: hidden;
+        }
+        
+        .hero-area::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hero-area-content { position: relative; z-index: 2; }
+        .hero-area-content h1 {
+            font-size: 65px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(41, 121, 255, 0.3);
+        }
+        .hero-area-content h1 span {
+            color: transparent;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            display: block;
+            font-size: 0.6em;
+            letter-spacing: 3px;
+            margin-top: 10px;
+        }
+        .hero-area-content p { font-size: 18px; margin-bottom: 40px; max-width: 90%; color: #d0d8e8; }
+
+        .app-download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-main);
+            color: #fff;
+            padding: 16px 40px;
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(41, 121, 255, 0.4);
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+            animation: pulse-glow 2s infinite;
+            border: none;
+        }
+        .app-download-btn:hover { color: #fff; transform: translateY(-2px); text-decoration: none; }
+        .app-download-btn i { font-size: 24px; margin-right: 12px; }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 229, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0); }
+        }
+
+        .hand-mockup img {
+            max-height: 400px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 30px rgba(41, 121, 255, 0.2));
+            animation: float 5s ease-in-out infinite;
+            border-radius: 24px;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .ptb-90 { padding: 90px 0; }
+        .sec-title h2 { font-size: 36px; margin-bottom: 10px; }
+        .sec-title p { color: var(--accent-cyan); font-weight: 500; }
+        .sec-title h2::after {
+            content: ''; display: block; width: 80px; height: 3px; 
+            background: var(--gradient-main); margin: 15px auto 0;
+        }
+
+        .single-about-box {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: var(--glass-border);
+            padding: 35px;
+            border-radius: 12px;
+            transition: 0.4s;
+            height: 100%;
+        }
+        .single-about-box:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(20, 30, 48, 0.9);
+            box-shadow: var(--neon-glow);
+            transform: translateY(-5px);
+        }
+        .single-about-box i { font-size: 45px; color: var(--accent-cyan); margin-bottom: 20px; }
+
+        .single-feature-box ul { padding: 0; margin: 0; list-style: none; }
+        .single-feature-box li { display: flex; align-items: center; margin-bottom: 20px; }
+        .feature-box-icon {
+            background: rgba(41,121,255,0.1); border-radius: 50%;
+            width: 70px; height: 70px; min-width: 70px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .feature-box-icon i { font-size: 28px; color: var(--accent-cyan); }
+        
+        .counter-area {
+            position: relative;
+            background-image: 
+                linear-gradient(rgba(2, 5, 11, 0.9), rgba(2, 5, 11, 0.9)), 
+                url('https://images.unsplash.com/photo-1552820728-8b83bb6b773f?q=80&w=2070&auto=format&fit=crop');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+        .single-counter-box { position: relative; z-index: 1; padding: 20px; }
+        .single-counter-box h3 { font-size: 48px; color: var(--text-white); margin: 10px 0; }
+        .single-counter-box p { color: var(--accent-cyan); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+        .scrollToTop {
+            background: var(--gradient-main);
+            color: #fff;
+            bottom: 30px;
+            right: 30px;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            z-index: 999;
+            box-shadow: var(--neon-glow);
+        }
+        .scrollToTop:hover { color: #fff; transform: translateY(-3px); }
+
+        @media only screen and (max-width: 991px) {
+            header.header { padding: 10px 0; }
+            .logo img { max-width: 120px; }
+            .slicknav_menu { display: block; }
+            
+            .hero-area { padding-top: 130px; padding-bottom: 60px; text-align: center; }
+            .hero-area-content h1 { font-size: 42px; line-height: 1.2; }
+            .hero-area-content p { margin: 20px auto 30px; font-size: 16px; }
+            .hand-mockup img { max-height: 300px; margin-top: 50px; }
+            
+            .single-feature-box li { flex-direction: column; text-align: center; align-items: center; }
+            .feature-box-icon { margin: 0 0 20px 0 !important; }
+            .text-lg-right { text-align: center !important; }
+        }
+        
+        @media only screen and (max-width: 480px) {
+            .hero-area-content h1 { font-size: 32px; }
+            .app-download-btn { padding: 12px 20px; font-size: 15px; width: 100%; margin-bottom: 10px; }
+            .ptb-90 { padding: 60px 0; }
+            .single-counter-box h3 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        const CONFIG = {
+            LOGO_URL: "https://i.ibb.co/bMS5nsFd/133203.jpg", 
+            DOWNLOAD_LINK: "https://github.com/skillclash811-alt/BOOYAHZONE/raw/refs/heads/main/BOOYAH%20ZONE.apk"
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll('.dynamic-logo').forEach(img => img.src = CONFIG.LOGO_URL);
+            document.getElementById('dynamic-favicon').href = CONFIG.LOGO_URL;
+            document.querySelectorAll('.dynamic-download-link').forEach(btn => btn.href = CONFIG.DOWNLOAD_LINK);
+        });
+    </script>
+
+    <header class="header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-3 col-md-4 col-8">
+                    <div class="logo">
+                        <a href="#">
+                            <img class="dynamic-logo" alt="BOOYAH ZONE Logo">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-8 col-4">
+                    <div class="responsive-menu d-lg-none"></div>
+                    <div class="mainmenu d-none d-lg-block">
+                        <ul id="primary-menu">
+                            <li><a class="nav-link active" href="#">Home</a></li>
+                            <li><a class="nav-link" href="#about">About</a></li>
+                            <li><a class="nav-link" href="#features">Features</a></li>
+                            <li><a class="nav-link" href="#statistics">Statistics</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-area" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <div class="hero-area-content animate__animated animate__fadeInLeft">
+                        <h1>BOOYAH ZONE <br><span>PLAY. COMPETE. WIN.</span></h1>
+                        <p>Introducing BOOYAH ZONE, Your Competitive Gaming Destination. Join Daily Free Fire Tournaments, Earn Real Rewards Instantly, And Compete On A Skill-Based Platform.</p>
+                        
+                        <a href="#" target="_blank" class="app-download-btn dynamic-download-link">
+                            <i class="fab fa-android"></i> Download App
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-5 text-center">
+                    <div class="hand-mockup animate__animated animate__zoomIn animate__delay-1s">
+                        <img class="dynamic-logo img-fluid" alt="BOOYAH ZONE Hero Logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-area ptb-90" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="sec-title text-center">
+                        <h2>EXPERIENCE THE THRILL</h2>
+                        <p>Trusted By Real Players, Built For Fair Play.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="single-about-box">
+                        <i class="fas fa-gavel"></i>
+                        <h4>FAIR PLAY</h4>
+                        <p>All Matches Are Conducted Fairly, And Every Player Is Rewarded Based On Their In-Game Performance.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="single-about-box">
+                        <i class="fas fa-bolt"></i>
+                        <h4>FAST PERFORMANCE</h4>
+                        <p>BOOYAH ZONE Is Built With Modern Technology And Optimized Performance, Ensuring A Smooth And Confident Gaming Experience.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="single-about-box">
+                        <i class="fas fa-trophy"></i>
+                        <h4>FREE MATCHES</h4>
+                        <p>Join Any Contest Of Your Liking And Of Your Desired Time Completely For Free.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="feature-area ptb-90" id="features" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="single-feature-box text-lg-right text-center">
+                        <ul>
+                            <li>
+                                <div class="feature-box-info pr-lg-4">
+                                    <h4>SKILL-BASED TOURNAMENTS</h4>
+                                    <p>Join The Action, Dominate The Match, And Earn Big Rewards With BOOYAH ZONE.</p>
+                                </div>
+                                <div class="feature-box-icon ml-lg-3">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                            </li>
+                            <li class="mt-4">
+                                <div class="feature-box-info pr-lg-4">
+                                    <h4>EASY ACCOUNT CREATION</h4>
+                                    <p>Create Your Account In Less Than 30 Seconds With A Secure, Privacy-First Setup.</p>
+                                </div>
+                                <div class="feature-box-icon ml-lg-3">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="single-feature-box text-lg-left text-center">
+                        <ul>
+                            <li>
+                                <div class="feature-box-icon mr-lg-3">
+                                    <i class="fas fa-wallet"></i>
+                                </div>
+                                <div class="feature-box-info pl-lg-4">
+                                    <h4>INSTANT WITHDRAWALS</h4>
+                                    <p>Transfer winnings to UPI, Paytm, or redeem as Gift Cards instantly 24/7.</p>
+                                </div>
+                            </li>
+                            <li class="mt-4">
+                                <div class="feature-box-icon mr-lg-3">
+                                    <i class="fas fa-headset"></i>
+                                </div>
+                                <div class="feature-box-info pl-lg-4">
+                                    <h4>24/7 CUSTOMER SUPPORT</h4>
+                                    <p>BOOYAH ZONE Provides Reliable 24x7 Customer Support To Ensure A Smooth Experience.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="counter-area ptb-90" id="statistics">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="single-counter-box">
+                        <i class="fas fa-gamepad mb-3" style="font-size:35px; color:var(--accent-cyan)"></i>
+                        <h3><span class="counter">50</span>K+</h3>
+                        <p>Tournaments</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="single-counter-box">
+                        <i class="fas fa-users mb-3" style="font-size:35px; color:var(--accent-cyan)"></i>
+                        <h3><span class="counter">100</span>K+</h3>
+                        <p>Gamers</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="single-counter-box">
+                        <i class="fas fa-coins mb-3" style="font-size:35px; color:var(--accent-cyan)"></i>
+                        <h3><span class="counter">1.2</span>L+</h3>
+                        <p>Winnings Distributed</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="single-counter-box">
+                        <i class="fas fa-gift mb-3" style="font-size:35px; color:var(--accent-cyan)"></i>
+                        <h3><span class="counter">60</span>K+</h3>
+                        <p>Rewards Claimed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="download-area ptb-90">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="text-center" style="background: var(--bg-card); border: 1px solid rgba(41,121,255,0.3); border-radius: 20px; padding: 50px; box-shadow: 0 0 40px rgba(41,121,255,0.15);">
+                        <i class="fab fa-android" style="font-size: 65px; color: var(--accent-cyan); margin-bottom: 20px;"></i>
+                        <h2 style="margin-bottom: 10px;">DOWNLOAD THE BOOYAH ZONE APP</h2>
+                        <p style="color: #a0aabf; margin-bottom: 30px;">Trusted By Real Players, Built For True Champions.</p>
+                        <a href="#" target="_blank" class="app-download-btn dynamic-download-link">
+                            <i class="fas fa-download"></i> Download APK (v1.0)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <a href="#" class="scrollToTop"><i class="fas fa-chevron-up"></i></a>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/jquery.slicknav.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#primary-menu').slicknav({
+                prependTo: '.responsive-menu',
+                label: '',
+                allowParentLinks: true,
+                duplicate: false,
+                closedSymbol: '<i class="fas fa-chevron-right"></i>',
+                openedSymbol: '<i class="fas fa-chevron-down"></i>'
+            });
+
+            function checkWidth() {
+                if ($(window).width() >= 992) {
+                    $('.mainmenu').show();
+                    $('.slicknav_menu').hide();
+                } else {
+                    $('.mainmenu').hide();
+                    $('.slicknav_menu').show();
+                }
+            }
+            checkWidth();
+            $(window).resize(checkWidth);
+
+            $('.counter').counterUp({ delay: 10, time: 1500 });
+
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 300) {
+                    $('.scrollToTop').fadeIn();
+                } else {
+                    $('.scrollToTop').fadeOut();
+                }
+            });
+            
+            $('.scrollToTop').click(function(e) {
+                e.preventDefault();
+                $('html, body').animate({scrollTop: 0}, 600);
+            });
+        });
+    </script>
+
+</body>
+</html>
