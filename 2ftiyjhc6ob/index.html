@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Staff Panel - BATTLE-BOY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing:border-box; margin:0; padding:0; }
+        body { font-family:'Poppins',sans-serif; background:#0d1b3e; color:#fff; min-height:100vh; }
+
+        #loader { position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(13,27,62,0.92);display:none;justify-content:center;align-items:center;z-index:9999; }
+        .spin { width:48px;height:48px;border:5px solid rgba(255,255,255,0.15);border-top-color:#00bcd4;border-radius:50%;animation:spin 0.8s linear infinite; }
+        @keyframes spin{to{transform:rotate(360deg)}}
+        #toast { position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#2e7d32;color:#fff;padding:11px 24px;border-radius:10px;font-weight:600;z-index:9999;display:none;box-shadow:0 4px 20px rgba(0,0,0,0.5);min-width:200px;text-align:center;font-size:0.9rem; }
+        #toast.err { background:#c62828; }
+
+        /* LOGIN */
+        .login-wrap { min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px; }
+        .login-card { background:#132044;border-radius:20px;padding:36px 26px;width:100%;max-width:360px;box-shadow:0 20px 60px rgba(0,0,0,0.6); }
+        .login-card h2 { color:#00bcd4;font-weight:800;text-align:center;font-size:1.5rem;margin-bottom:4px; }
+        .login-card .sub { color:#aaa;text-align:center;margin-bottom:24px;font-size:0.82rem; }
+        .fi { background:#0d1b3e;border:1.5px solid #1e3a6e;color:#fff;border-radius:10px;padding:12px 15px;width:100%;font-size:0.9rem;outline:none;margin-bottom:12px;font-family:'Poppins',sans-serif; }
+        .fi:focus { border-color:#00bcd4; }
+        .fi::placeholder { color:#445; }
+        .btn-main { width:100%;background:linear-gradient(135deg,#005b6e,#00bcd4);color:#fff;border:none;border-radius:10px;padding:14px;font-size:0.95rem;font-weight:700;cursor:pointer;margin-top:4px;font-family:'Poppins',sans-serif; }
+        .err-txt { color:#ff6b6b;font-size:0.8rem;margin-bottom:8px; }
+
+        /* TOP BAR */
+        .top-bar { background:#132044;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 15px rgba(0,0,0,0.4); }
+        .top-title { font-size:1rem;font-weight:800;color:#00bcd4; }
+        .top-name { font-size:0.78rem;color:#80cbc4;margin-top:1px; }
+        .btn-logout { background:rgba(255,255,255,0.08);border:none;color:#fff;padding:7px 13px;border-radius:8px;font-size:0.8rem;cursor:pointer;font-family:'Poppins',sans-serif; }
+
+        /* BUTTON GRID */
+        .btn-grid { display:grid;grid-template-columns:1fr 1fr;gap:11px;padding:14px; }
+        .btn-grid .full { grid-column:1/-1; }
+        .sbtn { background:linear-gradient(135deg,#005b6e,#00838f);color:#fff;border:none;border-radius:50px;padding:14px 8px;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;cursor:pointer;text-align:center;transition:transform 0.1s;font-family:'Poppins',sans-serif; }
+        .sbtn:active { transform:scale(0.95); }
+
+        /* PANELS */
+        .pov { position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.65);z-index:500;display:none;align-items:flex-end; }
+        .pov.open { display:flex; }
+        .panel { background:#0d1b3e;width:100%;max-height:93vh;border-radius:24px 24px 0 0;overflow-y:auto;padding:22px 15px 50px;animation:sup 0.3s ease; }
+        @keyframes sup{from{transform:translateY(100%)}to{transform:translateY(0)}}
+        .ph { display:flex;justify-content:space-between;align-items:center;margin-bottom:18px; }
+        .pt { font-size:1rem;font-weight:700;color:#00bcd4; }
+        .pclose { background:rgba(255,255,255,0.1);border:none;color:#fff;border-radius:50%;width:34px;height:34px;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center; }
+        .psh { font-size:0.84rem;font-weight:700;color:#00bcd4;padding-bottom:8px;border-bottom:1px solid #1e3a6e;margin:14px 0 11px; }
+        .flbl { font-size:0.78rem;color:#aaa;display:block;margin-bottom:5px; }
+        .finp { background:#132044;border:1.5px solid #1e3a6e;color:#fff;border-radius:9px;padding:10px 13px;width:100%;font-size:0.88rem;outline:none;margin-bottom:12px;font-family:'Poppins',sans-serif; }
+        .finp:focus { border-color:#00bcd4; }
+        .fsel { background:#132044;border:1.5px solid #1e3a6e;color:#fff;border-radius:9px;padding:10px 13px;width:100%;font-size:0.88rem;outline:none;margin-bottom:12px; }
+        .fta { background:#132044;border:1.5px solid #1e3a6e;color:#fff;border-radius:9px;padding:10px 13px;width:100%;font-size:0.88rem;outline:none;min-height:80px;resize:vertical;margin-bottom:12px;font-family:'Poppins',sans-serif; }
+        .bsv { background:linear-gradient(135deg,#005b6e,#00bcd4);color:#fff;border:none;border-radius:9px;padding:13px;width:100%;font-size:0.9rem;font-weight:700;cursor:pointer;margin-bottom:10px;font-family:'Poppins',sans-serif; }
+        .upstat { font-size:0.75rem;color:#aaa;margin-top:-8px;margin-bottom:10px; }
+
+        /* TABS */
+        .tabs { display:flex;border-bottom:2px solid #1e3a6e;margin-bottom:14px; }
+        .tab { flex:1;background:none;border:none;color:#aaa;padding:9px;font-size:0.8rem;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif; }
+        .tab.on { color:#00bcd4;border-bottom:2px solid #00bcd4;margin-bottom:-2px; }
+
+        /* TYPE PILLS */
+        .tpill { display:inline-block;padding:5px 13px;border-radius:20px;font-size:0.75rem;font-weight:700;cursor:pointer;margin:3px 3px 3px 0;border:1.5px solid #1e3a6e;color:#aaa; }
+        .tpill.on { background:#00bcd4;color:#000;border-color:#00bcd4; }
+
+        /* MATCH CARDS */
+        .mcard { background:#132044;border-radius:11px;padding:13px;margin-bottom:10px; }
+        .mcard-title { font-weight:700;color:#00bcd4;font-size:0.88rem;margin-bottom:5px; }
+        .mcard-sub { font-size:0.77rem;color:#aaa;margin-bottom:8px; }
+        .bmanage { background:#00bcd4;color:#000;border:none;border-radius:6px;padding:5px 11px;font-size:0.76rem;cursor:pointer;font-weight:700; }
+        .bdelbtn { background:#b71c1c;color:#fff;border:none;border-radius:6px;padding:5px 9px;font-size:0.76rem;cursor:pointer; }
+        .balt { background:#1565c0; }
+
+        /* ACCESS CODE TOGGLE */
+        .ac-track { position:absolute;top:0;left:0;width:44px;height:24px;background:#2a2a4a;border-radius:24px;transition:0.3s; }
+        .ac-dot { position:absolute;top:4px;left:4px;width:16px;height:16px;background:#aaa;border-radius:50%;transition:0.3s; }
+
+        .empty { text-align:center;padding:30px 20px;color:#445;font-size:0.85rem; }
+        ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:#0d1b3e}::-webkit-scrollbar-thumb{background:#1e3a6e;border-radius:4px}
+    </style>
+</head>
+<body>
+<div id="loader"><div class="spin"></div></div>
+<div id="toast"></div>
+
+<!-- LOGIN -->
+<div id="loginArea">
+    <div class="login-wrap">
+        <div class="login-card">
+            <h2>⚔️ BATTLE-BOY</h2>
+            <p class="sub">Staff Panel Login</p>
+            <input class="fi" type="email" id="lEmail" placeholder="Staff Email">
+            <input class="fi" type="password" id="lPass" placeholder="Password">
+            <div class="err-txt" id="lErr"></div>
+            <button class="btn-main" id="lBtn">LOGIN AS STAFF</button>
+        </div>
+    </div>
+</div>
+
+<!-- MAIN STAFF AREA -->
+<div id="mainArea" style="display:none;">
+    <div class="top-bar">
+        <div>
+            <div class="top-title">⚔️ Staff Panel</div>
+            <div class="top-name" id="staffNameDisplay">Staff</div>
+        </div>
+        <button class="btn-logout" id="logoutBtn">Logout</button>
+    </div>
+
+    <!-- Info Banner -->
+    <div style="background:#0a2a1a;border-left:4px solid #00bcd4;padding:10px 14px;margin:12px 14px;border-radius:0 8px 8px 0;">
+        <div style="font-size:0.78rem;color:#80cbc4;font-weight:600;">Staff Access</div>
+        <div style="font-size:0.74rem;color:#aaa;margin-top:2px;">You can add categories, create & manage matches, update room details and access codes.</div>
+    </div>
+
+    <!-- Button Grid -->
+    <div class="btn-grid">
+        <button class="sbtn" onclick="sop('spCat')">ADD CATEGORY</button>
+        <button class="sbtn" onclick="sop('spCreate')">CREATE MATCH</button>
+        <button class="sbtn full" onclick="sop('spMatches')">MANAGE MATCHES</button>
+    </div>
+</div>
+
+<!-- ═══ PANELS ═══ -->
+
+<!-- Add Category -->
+<div class="pov" id="spCat"><div class="panel">
+    <div class="ph"><span class="pt">📂 Add Category</span><button class="pclose" onclick="scl('spCat')">✕</button></div>
+    <label class="flbl">Category Name</label>
+    <input class="finp" id="scName" placeholder="e.g. FULL MAP">
+    <label class="flbl">Image URL</label>
+    <input class="finp" id="scUrl" placeholder="https://...">
+    <label class="flbl">Or Upload Image</label>
+    <input type="file" class="finp" id="scFile" accept="image/*">
+    <div class="upstat" id="scStat"></div>
+    <button class="bsv" id="sBAddCat">➕ ADD CATEGORY</button>
+    <div class="psh">Existing Categories</div>
+    <div id="scatList"><div class="empty">Loading...</div></div>
+</div></div>
+
+<!-- Create Match -->
+<div class="pov" id="spCreate"><div class="panel">
+    <div class="ph"><span class="pt">🏆 Create Match</span><button class="pclose" onclick="scl('spCreate')">✕</button></div>
+    <label class="flbl">Category</label>
+    <select class="fsel" id="smCat"></select>
+    <label class="flbl">Match Name</label>
+    <input class="finp" id="smName" placeholder="e.g. Free Fire Solo #1">
+    <label class="flbl">Match Type</label>
+    <div id="smTypePills">
+        <span class="tpill on" data-t="Solo">🧍 Solo</span>
+        <span class="tpill" data-t="Duo">👥 Duo</span>
+        <span class="tpill" data-t="Trio">👨‍👩‍👦 Trio</span>
+        <span class="tpill" data-t="Squad">👨‍👩‍👧‍👦 Squad</span>
+        <span class="tpill" data-t="1v1">⚔️ 1v1</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px;">
+        <div><label class="flbl">Entry Fee (₹)</label><input class="finp" id="smFee" type="number" placeholder="0"></div>
+        <div><label class="flbl">Prize Pool (₹)</label><input class="finp" id="smPrize" type="number" placeholder="500"></div>
+        <div><label class="flbl">Per Kill (₹)</label><input class="finp" id="smKill" type="number" placeholder="0"></div>
+        <div><label class="flbl">Total Slots</label><input class="finp" id="smSlots" type="number" placeholder="48"></div>
+        <div><label class="flbl">Date</label><input class="finp" id="smDate" type="date"></div>
+        <div><label class="flbl">Time</label><input class="finp" id="smTime" type="time"></div>
+    </div>
+    <label class="flbl">Map</label>
+    <input class="finp" id="smMap" placeholder="e.g. Bermuda">
+    <label class="flbl">Rules</label>
+    <textarea class="fta" id="smRules" placeholder="Match rules..."></textarea>
+    <label class="flbl">Banner URL (Optional)</label>
+    <input class="finp" id="smBannerUrl" placeholder="https://...">
+    <label class="flbl">Or Upload Banner</label>
+    <input type="file" class="finp" id="smBannerFile" accept="image/*">
+    <div class="upstat" id="smBannerStat"></div>
+    <button class="bsv" id="sBCreate">🚀 CREATE MATCH</button>
+</div></div>
+
+<!-- Manage Matches -->
+<div class="pov" id="spMatches"><div class="panel">
+    <div class="ph"><span class="pt">⚙️ Manage Matches</span><button class="pclose" onclick="scl('spMatches')">✕</button></div>
+    <div class="tabs">
+        <button class="tab on" onclick="sLoadMList('upcoming',this)">Upcoming</button>
+        <button class="tab" onclick="sLoadMList('ongoing',this)">Ongoing</button>
+        <button class="tab" onclick="sLoadMList('completed',this)">Completed</button>
+    </div>
+    <div id="smList"><div class="empty">Loading...</div></div>
+</div></div>
+
+<!-- Match Manager (Staff) -->
+<div class="pov" id="spMgr"><div class="panel">
+    <div class="ph"><span class="pt" id="smgrTitle">Match Manager</span><button class="pclose" onclick="scl('spMgr')">✕</button></div>
+    <input type="hidden" id="smgrId">
+
+    <label class="flbl">Status</label>
+    <select class="fsel" id="smgrStatus">
+        <option value="upcoming">Upcoming</option>
+        <option value="ongoing">Ongoing</option>
+        <option value="completed">Completed</option>
+    </select>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;">
+        <div><label class="flbl">Room ID</label><input class="finp" id="smgrRoomId" placeholder="Room ID"></div>
+        <div><label class="flbl">Password</label><input class="finp" id="smgrRoomPass" placeholder="Password"></div>
+    </div>
+    <label class="flbl">Room Banner URL</label>
+    <input class="finp" id="smgrRoomImg" placeholder="https://...">
+
+    <!-- ACCESS CODE -->
+    <div style="background:#132044;border-radius:10px;padding:12px;margin-bottom:12px;border:1.5px solid #1e3a6e;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <span style="font-size:0.85rem;font-weight:700;color:#00bcd4;">🔐 Access Code</span>
+            <div style="display:flex;align-items:center;gap:8px;">
+                <span id="sacStatusLbl" style="font-size:0.78rem;font-weight:700;color:#aaa;">OFF</span>
+                <div onclick="stoggleAc()" style="position:relative;width:44px;height:24px;cursor:pointer;">
+                    <div id="sacTrack" class="ac-track"></div>
+                    <div id="sacDot" class="ac-dot"></div>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="smgrAcEnabled" value="0">
+        <div id="sacInputArea" style="display:none;">
+            <label class="flbl">Access Code</label>
+            <input class="finp" id="smgrAcCode" placeholder="e.g. BATTLE123" style="margin-bottom:4px;">
+            <div style="font-size:0.72rem;color:#aaa;">Users must enter this to join.</div>
+        </div>
+        <div id="sacOffNote" style="font-size:0.75rem;color:#556;">Enable to require a secret code for joining.</div>
+    </div>
+
+    <label class="flbl">📢 Special Notice</label>
+    <input class="finp" id="smgrSpecialNote" placeholder="e.g. Send gameplay video">
+
+    <button class="bsv" id="sBUpdateM">💾 UPDATE MATCH</button>
+
+    <div class="psh">Participants (<span id="smgrPCount">0</span>)</div>
+    <div id="smgrParts" style="max-height:140px;overflow-y:auto;"></div>
+</div></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+import { getDatabase,ref,get,set,push,remove,update,serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
+import { getAuth,signInWithEmailAndPassword,signOut,onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+
+const FC = {
+  apiKey: "AIzaSyAI2RE0LgkYOB-ogGxhexkogr2clYmzw34",
+  authDomain: "crypt-battle-4deb6.firebaseapp.com",
+  databaseURL: "https://crypt-battle-4deb6-default-rtdb.firebaseio.com",
+  projectId: "crypt-battle-4deb6",
+  storageBucket: "crypt-battle-4deb6.firebasestorage.app",
+  messagingSenderId: "847929543461",
+  appId: "1:847929543461:web:6a411a065cbdd86043a8cc",
+  measurementId: "G-6GE59JFX22"
+};
+const IMGBB = "52374940a6cadc3c3be0089b75399ec7";
+const app = initializeApp(FC), db = getDatabase(app), auth = getAuth(app);
+const $ = id => document.getElementById(id);
+const L = s => $('loader').style.display = s ? 'flex' : 'none';
+
+function toast(m, e=false) {
+    const t = $('toast'); t.textContent = m; t.className = e ? 'err' : '';
+    t.style.display = 'block'; setTimeout(() => t.style.display='none', 3000);
+}
+
+async function upImg(file, stat) {
+    if (!file) return null;
+    if (stat) stat.textContent = 'Uploading...';
+    const fd = new FormData(); fd.append('image', file);
+    const r = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB}`, {method:'POST',body:fd});
+    const j = await r.json();
+    if (!j.success) throw new Error('Upload failed');
+    if (stat) stat.textContent = '✅ Done';
+    return j.data.url;
+}
+
+// Panel helpers
+window.sop = function(id) {
+    $(id)?.classList.add('open');
+    if (id === 'spCat') loadSCats();
+    if (id === 'spCreate') loadSCatDrop();
+    if (id === 'spMatches') sLoadMList('upcoming', document.querySelector('#spMatches .tab'));
+};
+window.scl = function(id) { $(id)?.classList.remove('open'); };
+document.querySelectorAll('.pov').forEach(o => o.addEventListener('click', e => { if (e.target === o) o.classList.remove('open'); }));
+
+// ── AUTH ──
+onAuthStateChanged(auth, async user => {
+    L(true);
+    try {
+        if (user) {
+            // Check if this user is a staff member
+            const staffSnap = await get(ref(db, `staffUids/${user.uid}`));
+            if (staffSnap.exists() && staffSnap.val().isStaff) {
+                $('loginArea').style.display = 'none';
+                $('mainArea').style.display = 'block';
+                $('staffNameDisplay').textContent = staffSnap.val().name || user.email;
+            } else {
+                // Not a valid staff - sign out
+                await signOut(auth);
+                $('mainArea').style.display = 'none';
+                $('loginArea').style.display = 'block';
+                $('lErr').textContent = 'Not authorized as staff. Contact admin.';
+            }
+        } else {
+            $('mainArea').style.display = 'none';
+            $('loginArea').style.display = 'block';
+        }
+    } catch(e) { console.error(e); }
+    L(false);
+});
+
+$('lBtn').onclick = async () => {
+    const em = $('lEmail').value.trim(), pw = $('lPass').value;
+    if (!em || !pw) { $('lErr').textContent = 'Fill all fields'; return; }
+    L(true);
+    try { await signInWithEmailAndPassword(auth, em, pw); }
+    catch(e) { $('lErr').textContent = 'Login failed: ' + e.message; }
+    L(false);
+};
+$('logoutBtn').onclick = () => signOut(auth);
+
+// ── CATEGORIES ──
+async function loadSCats() {
+    const s = await get(ref(db, 'games'));
+    if (!s.exists()) { $('scatList').innerHTML = '<div class="empty">No categories</div>'; return; }
+    let h = '';
+    Object.entries(s.val()).forEach(([id, g]) => {
+        h += `<div class="mcard" style="display:flex;align-items:center;gap:10px;">
+            <img src="${g.imageUrl||''}" style="width:50px;height:40px;object-fit:cover;border-radius:7px;" onerror="this.style.display='none'">
+            <span style="flex:1;font-weight:600;">${g.name}</span>
+        </div>`;
+    });
+    $('scatList').innerHTML = h;
+}
+$('sBAddCat').onclick = async () => {
+    const nm = $('scName').value.trim();
+    if (!nm) { toast('Enter name', true); return; }
+    L(true);
+    try {
+        let url = $('scUrl').value.trim();
+        const f = $('scFile').files[0]; if (f) url = await upImg(f, $('scStat'));
+        await push(ref(db, 'games'), {name:nm, imageUrl:url||''});
+        $('scName').value = ''; $('scUrl').value = '';
+        loadSCats(); toast('✅ Category Added');
+    } catch(e) { toast(e.message, true); }
+    L(false);
+};
+
+// ── CREATE MATCH ──
+async function loadSCatDrop() {
+    const s = await get(ref(db, 'games'));
+    let o = '<option value="">Select Category</option>';
+    if (s.exists()) Object.entries(s.val()).forEach(([id, g]) => { o += `<option value="${id}">${g.name}</option>`; });
+    $('smCat').innerHTML = o;
+}
+let smType = 'Solo';
+document.querySelectorAll('#smTypePills .tpill').forEach(p => {
+    p.onclick = () => {
+        document.querySelectorAll('#smTypePills .tpill').forEach(x => x.classList.remove('on'));
+        p.classList.add('on'); smType = p.dataset.t;
+        const sm = {Solo:48,Duo:24,Trio:18,Squad:12,'1v1':2};
+        $('smSlots').value = sm[smType] || 48;
+    };
+});
+$('sBCreate').onclick = async () => {
+    const nm = $('smName').value.trim(), gid = $('smCat').value;
+    if (!nm || !gid) { toast('Fill name & category', true); return; }
+    L(true);
+    try {
+        let burl = $('smBannerUrl').value.trim();
+        const f = $('smBannerFile').files[0]; if (f) burl = await upImg(f, $('smBannerStat'));
+        await push(ref(db, 'tournaments'), {
+            name:nm, gameId:gid, type:smType,
+            entryFee:Number($('smFee').value)||0,
+            prizePool:Number($('smPrize').value)||0,
+            perKill:Number($('smKill').value)||0,
+            totalSlots:Number($('smSlots').value)||48,
+            filledSlots:0,
+            map:$('smMap').value||'Bermuda',
+            matchDate:$('smDate').value,
+            matchTime:$('smTime').value,
+            rules:$('smRules').value,
+            bannerUrl:burl||'',
+            status:'upcoming',
+            createdAt:serverTimestamp()
+        });
+        toast('✅ Match Created!');
+        $('smName').value=''; $('smFee').value=''; $('smPrize').value=''; $('smRules').value='';
+    } catch(e) { toast(e.message, true); }
+    L(false);
+};
+
+// ── MANAGE MATCHES ──
+window.sLoadMList = async (status, tabEl) => {
+    if (tabEl) {
+        document.querySelectorAll('#spMatches .tab').forEach(t => t.classList.remove('on'));
+        tabEl.classList.add('on');
+    }
+    $('smList').innerHTML = '<div class="empty">Loading...</div>';
+    const s = await get(ref(db, 'tournaments'));
+    if (!s.exists()) { $('smList').innerHTML = '<div class="empty">No matches</div>'; return; }
+    const ms = Object.entries(s.val()).filter(([,m]) => m.status === status);
+    if (!ms.length) { $('smList').innerHTML = `<div class="empty">No ${status} matches</div>`; return; }
+    let h = '';
+    ms.forEach(([id, m]) => {
+        const statusColor = {upcoming:'#ff9800',ongoing:'#4caf50',completed:'#aaa'}[m.status]||'#aaa';
+        h += `<div class="mcard">
+            <div class="mcard-title">${m.name} <span style="font-size:0.7rem;background:#1a2d5a;padding:2px 8px;border-radius:10px;color:#ccc;">${m.type||'Solo'}</span></div>
+            <div class="mcard-sub">₹${m.entryFee||0} entry · ₹${m.prizePool||0} prize · ${m.filledSlots||0}/${m.totalSlots||48} slots</div>
+            <div class="mcard-sub">${m.matchDate||''} ${m.matchTime||''}</div>
+            <div style="display:flex;gap:7px;align-items:center;">
+                <button class="bmanage" onclick="sOpenMgr('${id}')">⚙️ Manage</button>
+                <span style="font-size:0.75rem;color:${statusColor};font-weight:700;text-transform:uppercase;">${m.status}</span>
+            </div>
+        </div>`;
+    });
+    $('smList').innerHTML = h;
+};
+
+// ── ACCESS CODE TOGGLE ──
+let sacEnabled = false;
+window.stoggleAc = () => {
+    sacEnabled = !sacEnabled;
+    $('smgrAcEnabled').value = sacEnabled ? '1' : '0';
+    $('sacStatusLbl').textContent = sacEnabled ? 'ON' : 'OFF';
+    $('sacStatusLbl').style.color = sacEnabled ? '#4caf50' : '#aaa';
+    $('sacTrack').style.background = sacEnabled ? '#005b6e' : '#2a2a4a';
+    $('sacDot').style.left = sacEnabled ? '24px' : '4px';
+    $('sacDot').style.background = sacEnabled ? '#fff' : '#aaa';
+    $('sacInputArea').style.display = sacEnabled ? 'block' : 'none';
+    $('sacOffNote').style.display = sacEnabled ? 'none' : 'block';
+};
+
+// ── MATCH MANAGER ──
+window.sOpenMgr = async id => {
+    sop('spMgr');
+    $('smgrId').value = id;
+    const s = await get(ref(db, `tournaments/${id}`));
+    if (!s.exists()) return;
+    const d = s.val();
+    $('smgrTitle').textContent = d.name || 'Match Manager';
+    $('smgrStatus').value = d.status || 'upcoming';
+    $('smgrRoomId').value = d.roomId || '';
+    $('smgrRoomPass').value = d.roomPass || '';
+    $('smgrRoomImg').value = d.roomImageUrl || '';
+    $('smgrSpecialNote').value = d.specialNote || '';
+
+    // Access Code state
+    sacEnabled = !!(d.accessCodeEnabled && d.accessCode);
+    $('smgrAcEnabled').value = sacEnabled ? '1' : '0';
+    $('sacStatusLbl').textContent = sacEnabled ? 'ON' : 'OFF';
+    $('sacStatusLbl').style.color = sacEnabled ? '#4caf50' : '#aaa';
+    $('sacTrack').style.background = sacEnabled ? '#005b6e' : '#2a2a4a';
+    $('sacDot').style.left = sacEnabled ? '24px' : '4px';
+    $('sacDot').style.background = sacEnabled ? '#fff' : '#aaa';
+    $('sacInputArea').style.display = sacEnabled ? 'block' : 'none';
+    $('sacOffNote').style.display = sacEnabled ? 'none' : 'block';
+    $('smgrAcCode').value = d.accessCode || '';
+
+    // Participants
+    let ph = '<div class="empty" style="padding:8px;">No participants</div>';
+    let cnt = 0;
+    if (d.participants) {
+        ph = '';
+        Object.values(d.participants).filter(Boolean).forEach((p, i) => {
+            ph += `<div style="background:#0d1b3e;border-radius:7px;padding:7px 10px;margin-bottom:5px;font-size:0.79rem;display:flex;justify-content:space-between;">
+                <span>Slot #${p.slot||i+1} — <strong>${p.inGameName||'?'}</strong></span>
+                <span style="color:#aaa;">${(p.userId||'').substring(0,8)}...</span>
+            </div>`;
+            cnt++;
+        });
+    }
+    $('smgrParts').innerHTML = ph;
+    $('smgrPCount').textContent = cnt;
+};
+
+$('sBUpdateM').onclick = async () => {
+    const id = $('smgrId').value;
+    L(true);
+    try {
+        const acOn = $('smgrAcEnabled').value === '1';
+        await update(ref(db, `tournaments/${id}`), {
+            status: $('smgrStatus').value,
+            roomId: $('smgrRoomId').value.trim(),
+            roomPass: $('smgrRoomPass').value.trim(),
+            roomImageUrl: $('smgrRoomImg').value.trim(),
+            specialNote: $('smgrSpecialNote').value.trim(),
+            accessCodeEnabled: acOn,
+            accessCode: acOn ? $('smgrAcCode').value.trim() : ''
+        });
+        toast('✅ Match Updated!');
+        scl('spMgr');
+        // Refresh match list
+        const activeTab = document.querySelector('#spMatches .tab.on');
+        if (activeTab) sLoadMList(activeTab.textContent.toLowerCase().trim(), activeTab);
+    } catch(e) { toast(e.message, true); }
+    L(false);
+};
+</script>
+</body>
+</html>
