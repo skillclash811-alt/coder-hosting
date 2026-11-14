@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#060b24">
+<title>Max Arena</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Inter:wght@400;600;800&display=swap');
+:root{--ln:#2a5bd7;--gd:#ffc83d;--gn:#22e08a;--rd:#ff4d6a;--mu:#8fa6d8}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:radial-gradient(ellipse at 50% -8%,#1a3a9e,transparent 48%),radial-gradient(ellipse at 100% 70%,#2a1478,transparent 40%),#060b24;color:#eaf1ff;font:14px Inter,Arial,sans-serif;padding-bottom:92px;min-height:100vh;overflow-x:hidden}
+button,input,select{font:inherit}button{cursor:pointer;color:#fff}button:disabled{opacity:.45;cursor:not-allowed}
+.hidden{display:none!important}a{color:#6fb0ff}h1,h2,h3,p{margin-top:0}
+h1,h2,.o,.bal,.stat b,.chip,.cnt,.amt,.logo{font-family:Orbitron,Arial,sans-serif}
+h2{font-size:14px;color:#8fc0ff;margin-bottom:12px}
+.sm{font-size:12px;color:var(--mu);line-height:1.6}.c{text-align:center}.gn{color:var(--gn)}.rdc{color:var(--rd)}.mu{color:var(--mu)}.gold{color:var(--gd);font-weight:800;font-size:13px;margin-top:3px}
+.wrap{max-width:680px;margin:auto;padding:14px 14px 30px}
+header{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:10px;padding:calc(10px + env(safe-area-inset-top)) 14px 10px;background:rgba(6,11,36,.92);backdrop-filter:blur(18px);border-bottom:1px solid #1d3a8f;box-shadow:0 6px 24px #0008}
+.logo{width:44px;height:44px;border-radius:13px;flex:none;display:grid;place-items:center;overflow:hidden;font-size:22px;background:linear-gradient(160deg,#10206a,#0a1236);border:1px solid var(--ln);box-shadow:0 0 14px #2f7bff66}
+.logo img{width:100%;height:100%;object-fit:cover}
+.who{min-width:0;flex:1}.who small{display:block;font-size:10px;color:#9fb6dc}.who b{display:block;font-size:14px;color:#6fb0ff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chip{border:2px solid #e0a93a;border-radius:22px;background:#0a1236;color:#ffd96b;padding:7px 12px;font-weight:800;font-size:12px;box-shadow:0 0 12px #ffc83d40}
+.bell{width:38px;height:38px;border-radius:50%;border:1px solid var(--ln);background:#0b1544;font-size:18px;padding:0;box-shadow:0 0 10px #2f7bff55}
+.card,.item,.stat,.slot,.dc,details,.gt{background:linear-gradient(160deg,#10206a,#0a1236 70%);border:1px solid var(--ln);box-shadow:0 0 14px #2f7bff40,inset 0 1px #fff1,0 5px 0 #040a22}
+.card{position:relative;border-radius:20px;padding:16px;margin-bottom:16px}
+.item{border-radius:16px;padding:13px;margin:12px 0}
+.stat,.slot,.dc,details{border-radius:13px;padding:11px}
+.hero{overflow:hidden;background:radial-gradient(circle at 90% 0,#49a0ff55,transparent 45%),linear-gradient(135deg,#1c48c0,#12206e 55%,#0b1240)}
+.hero h1{font-size:22px;line-height:1.4;margin:10px 0 6px}.hero p{font-size:12px;color:#c5d6ff;margin-bottom:6px}
+.tag{display:inline-block;padding:6px 11px;border-radius:20px;background:#0c2c6c;border:1px solid #3d7bd1;color:#8fd0ff;font-size:10px;font-weight:800}
+.bal{font-size:32px;color:#fff;text-shadow:0 0 20px #6fb0ffaa;margin:4px 0 2px;overflow-wrap:anywhere}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.stat span{font-size:10px;color:#9eb4d9}.stat b{display:block;font-size:14px;margin-top:6px;overflow-wrap:anywhere}
+.sec{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:18px 0 12px}.sec h2{margin:0;font-size:16px;color:#fff}
+.lk{color:#6fb0ff;font-size:12px;font-weight:800;cursor:pointer}
+.ttl{display:flex;align-items:center;justify-content:center;gap:14px;font:900 24px Orbitron;color:#4d97ff;margin:24px 0 18px;text-shadow:0 0 18px #2f7bff99}
+.ttl:before,.ttl:after{content:"";width:44px;height:14px;transform:skewX(-35deg);background:repeating-linear-gradient(90deg,#2f7bff 0 10px,transparent 10px 16px);filter:drop-shadow(0 0 6px #2f7bff)}
+.btn{display:block;border:1px solid #7fb8ff66;color:#fff;background:linear-gradient(180deg,var(--a,#3d8bff),var(--b,#1649d6));border-radius:13px;padding:12px 14px;font-size:12px;font-weight:800;text-align:center;text-decoration:none;box-shadow:inset 0 1px #fff6,0 5px 0 var(--d,#0f2f8f),0 8px 16px #0006;transition:.12s}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--d,#0f2f8f)}
+.f{width:100%;margin-top:10px}.sb{padding:9px 13px;font-size:11px}
+.gr{--a:#34f0a0;--b:#0fa968;--d:#087048;color:#02281a}.rd{--a:#ff617e;--b:#a31e48;--d:#64152f}.pu{--a:#a46bff;--b:#5333b8;--d:#30206f}.dk{--a:#1d3274;--b:#0c1646;--d:#050b26}.wa{--a:#2ee27a;--b:#0b7a3c;--d:#075a2c}.tg{--a:#38b6ff;--b:#1272b8;--d:#0b4f82}
+.sup{display:flex;align-items:center;gap:14px;text-align:left;padding:15px;margin-top:14px;font-size:14px}.sup span{font-size:28px}.sup small{display:block;font-size:10px;font-weight:600;opacity:.9;margin-top:3px}
+.tabs{display:flex;gap:8px;margin:4px 0 6px}
+.tab{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:11px 4px;border-radius:12px;border:1px solid var(--ln);background:#0b1544;color:#b9ccff;font-weight:800;font-size:12px}
+.tab.on{background:linear-gradient(180deg,#3d8bff,#1649d6);color:#fff;border-color:#8fc0ff;box-shadow:0 0 16px #2f7bffaa,inset 0 1px #fff6}
+input,select{width:100%;padding:14px;margin:6px 0;border-radius:12px;border:1px solid #34517d;background:linear-gradient(145deg,#050c26,#0f1d4d);color:#fff;outline:none;font-size:14px;box-shadow:inset 2px 3px 7px #0007}
+input:focus,select:focus{border-color:#51a0ff}
+label{display:block;color:#a9c6e9;font-size:11px;font-weight:800;margin:12px 2px 2px}
+label.age{display:flex;gap:10px;align-items:center;margin:14px 0 6px;font-size:13px;cursor:pointer}
+.age input{width:22px;height:22px;margin:0;padding:0;accent-color:#22e08a;flex:none;border:0;background:none;box-shadow:none}
+.msg{font-size:12px;margin-top:10px;color:#ffc83d;overflow-wrap:anywhere}
+nav{position:fixed;z-index:30;bottom:0;left:0;right:0;display:flex;gap:4px;padding:8px 6px calc(8px + env(safe-area-inset-bottom));background:rgba(6,11,36,.96);backdrop-filter:blur(20px);border-top:1px solid #1d3a8f;box-shadow:0 -8px 28px #000a}
+nav button{flex:1;min-width:0;border:0;background:none;color:#7f97cf;padding:7px 2px;border-radius:14px;font-size:10px;font-weight:800}
+nav button.on{color:#fff;background:linear-gradient(180deg,#3d8bff,#1649d6);box-shadow:0 0 16px #2f7bffaa,inset 0 1px #fff6;transform:translateY(-4px)}
+nav i{display:block;font-style:normal;font-size:20px;margin-bottom:2px}
+.mgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.gt{position:relative;border-radius:18px;padding:14px 6px 10px;text-align:center;font-weight:800;font-size:12px;cursor:pointer;border-color:#3d8bff;box-shadow:0 0 18px #2f7bff77,inset 0 1px #fff2,0 5px 0 #040a22}
+.gi{width:64px;height:64px;margin:0 auto 9px;border-radius:15px;overflow:hidden;display:grid;place-items:center;font-size:32px;background:#07103a}.gi img{width:100%;height:100%;object-fit:cover}
+.cnt{position:absolute;top:-9px;right:-7px;min-width:26px;height:26px;padding:0 6px;border-radius:13px;background:linear-gradient(180deg,#34f0a0,#0fa968);color:#02281a;font-weight:900;font-size:12px;display:grid;place-items:center;border:2px solid #060b24;box-shadow:0 0 12px #22e08acc}.cnt.z{opacity:.5}
+.ih{display:flex;gap:11px;align-items:center}.ih img{width:56px;height:56px;object-fit:cover;border-radius:12px;border:1px solid #41628c;background:#071126}
+.tcard{padding:10px;overflow:hidden}
+.tournament-cover{display:block;width:100%;aspect-ratio:16/9;height:auto;object-fit:cover;border-radius:12px;border:1px solid #41628c;background:#071126}
+.tcover-empty{display:grid;place-items:center;color:#8fc0ff;font:900 24px Orbitron;background:radial-gradient(circle,#173c86,#080f2b)}
+.tcard-info{padding:10px 3px 3px}
+.tcard-prize{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.tcard-join{width:100%;margin-top:12px}
+
+.ico{width:52px;height:52px;border-radius:14px;flex:none;display:grid;place-items:center;font-size:26px;background:linear-gradient(160deg,#3d8bff,#1649d6);box-shadow:0 0 14px #2f7bff88,inset 0 1px #fff6}
+.jc{display:flex;gap:12px;align-items:center;cursor:pointer}
+.im{flex:1;min-width:0}.it{font-size:14px;font-weight:900;overflow-wrap:anywhere}.rt{text-align:right}
+.meta{font-size:11px;color:#91a9cf;margin-top:5px;line-height:1.6;overflow-wrap:anywhere}
+.amt{font-size:13px;white-space:nowrap}
+.pill{display:inline-block;padding:5px 9px;border-radius:20px;font-size:9px;font-weight:900;background:#1d3274;color:#b9d8ff}
+.upcoming{background:#123a63;color:#7dd3fc}.ongoing,.pending,.creating{background:#57400f;color:#ffe29a}.result,.success{background:#12452f;color:#65f2b0}.cancelled,.failed,.rejected{background:#531c2e;color:#ff9bae}
+.bar{height:8px;border-radius:8px;background:#050c26;box-shadow:inset 0 2px 4px #000a;margin:10px 0 3px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,#22e08a,#42a5ff)}
+.sw{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+.sh{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;font-size:9px;color:#a9bddb}.sh b{font:800 13px Orbitron;color:#8fc0ff}
+.mg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.mb{width:100%;border:1px solid #27bd8d;border-radius:10px;background:linear-gradient(145deg,#183a5c,#0c1d3a);padding:9px 4px;text-align:center;font-size:11px;font-weight:900;color:#7fffd0;box-shadow:inset 0 1px #fff2,0 3px 0 #081020}
+.mb small{display:block;font-size:9px;margin-top:4px;color:#9db4d5}
+.mb.tk{opacity:.35;filter:grayscale(1);text-decoration:line-through;border-color:#426087;color:#dcecff}
+.mb.sel{background:linear-gradient(145deg,#23dca1,#087c68);color:#031b19;border-color:#9affdd;box-shadow:0 0 14px #26e8ae77,0 3px 0 #075343}.mb.sel small{color:#063d31}
+.dg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:14px 0}.dc{box-shadow:none}.dc span{display:block;font-size:10px;color:#90a9ce}.dc b{display:block;margin-top:5px;font-size:13px;overflow-wrap:anywhere}
+.rule{white-space:pre-wrap;line-height:1.7;font-size:12px;color:#c9d8ee;overflow-wrap:anywhere}
+.row{display:flex;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid #1d3a8f;font-size:12px}.row b{text-align:right;overflow-wrap:anywhere}
+.note{background:#0c2058;border:1px solid #2d5ca8;padding:12px;border-radius:12px;font-size:11px;line-height:1.7;color:#b5d3ee}
+summary{font-weight:800;cursor:pointer;color:#8fc0ff}
+.av{width:72px;height:72px;margin:0 auto 10px;border-radius:50%;display:grid;place-items:center;font:900 30px Orbitron;background:linear-gradient(160deg,#3d8bff,#1649d6);border:3px solid #8fc0ff;box-shadow:0 0 22px #2f7bffcc}
+.ov{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:#020611dc;backdrop-filter:blur(10px);padding:15px}
+.dlg{width:100%;max-width:450px;max-height:90vh;overflow-y:auto;padding:18px;border-radius:20px;background:linear-gradient(145deg,#142a7a,#0a1236);border:1px solid #4f86e0;box-shadow:inset 0 1px #fff2,0 12px 0 #050b18,0 20px 50px #000b}
+.empty{text-align:center;padding:24px 8px;color:#91a8cc;font-size:12px}
+.toast{position:fixed;z-index:200;bottom:100px;left:50%;transform:translateX(-50%);max-width:90%;padding:12px 17px;border-radius:12px;background:#0f3d33;border:1px solid #22e08a;color:#baffdf;font-size:12px;box-shadow:0 8px 30px #0009}.toast.bad{background:#4b1728;border-color:#d74c6b;color:#ffd1dc}
+.err{color:#ff8097}.ok{color:#51edb0}
+</style>
+</head>
+<body>
+<header>
+ <div class="logo"><img src="logo.png" alt="" onerror="if(!this.dataset.r){this.dataset.r=1;this.src='/logo.png'}else{this.replaceWith('👑')}"></div>
+ <div class="who"><small>Welcome to Max Arena</small><b id="hName">Login to play</b></div>
+ <button class="chip hidden" id="hBal" data-go="walletPage">₹0 ＋</button>
+ <button class="bell hidden" id="hSup" data-go="supportPage">🎧</button>
+</header>
+
+<main class="wrap">
+<div id="boot" class="empty hidden">Connecting to Max Arena…</div>
+
+<section id="auth">
+ <div class="card hero"><span class="tag">⚡ MAX ARENA</span><h1>ENTER THE<br>ARENA</h1><p>Compete. Dominate. Win rewards.</p></div>
+ <div class="card" id="loginBox">
+  <h2>PLAYER LOGIN</h2>
+  <input id="lid" placeholder="Username / Phone / Email" autocomplete="username">
+  <input id="lpw" type="password" placeholder="Password" autocomplete="current-password">
+  <label class="age"><input type="checkbox" id="lage"> I am 18+</label>
+  <p class="sm">By logging in you agree to the <a href="https://terms.conditionshdidbd.onrender.com" target="_blank" rel="noopener">Terms &amp; Conditions</a></p>
+  <button class="btn f" id="loginBtn" disabled>LOGIN NOW</button>
+  <p class="sm c" style="margin:16px 0 0">New player? <span class="lk" id="toReg">Create Account</span></p>
+  <div id="loginMsg" class="msg"></div>
+ </div>
+ <div class="card hidden" id="regBox">
+  <h2>CREATE PLAYER ACCOUNT</h2>
+  <input id="rn" placeholder="Full Name">
+  <input id="ru" placeholder="Username">
+  <input id="rp" type="tel" placeholder="Mobile Number">
+  <input id="re" type="email" placeholder="Email Address">
+  <input id="rw" type="password" placeholder="Create Password" autocomplete="new-password">
+  <label class="age"><input type="checkbox" id="rage"> I am 18+</label>
+  <p class="sm">By registering you agree to the <a href="https://terms.conditionshdidbd.onrender.com" target="_blank" rel="noopener">Terms &amp; Conditions</a></p>
+  <button class="btn gr f" id="regBtn" disabled>CREATE ACCOUNT</button>
+  <p class="sm c" style="margin:16px 0 0">Already registered? <span class="lk" id="toLogin">Login</span></p>
+  <div id="regMsg" class="msg"></div>
+ </div>
+</section>
+
+<section id="app" class="hidden">
+
+<div id="homePage">
+ <h2 class="ttl">Games</h2>
+ <div class="mgrid" id="gGrid"><div class="empty">Loading games...</div></div>
+ <div class="sec"><h2>Upcoming Matches</h2><span class="lk" id="seeAll">See All</span></div>
+ <div class="tabs"><button class="tab on" data-st="upcoming">🏆 Upcoming</button><button class="tab" data-st="ongoing">▶ Ongoing</button><button class="tab" data-st="result">🏁 Results</button></div>
+ <div id="hNext"></div>
+</div>
+
+<div id="listPage" class="hidden">
+ <div class="sec" style="margin-top:0"><button class="btn dk sb" data-go="homePage">← BACK</button><b id="modeName" class="o" style="font-size:13px"></b></div>
+ <div class="tabs"><button class="tab on" data-st="upcoming">🏆 Upcoming</button><button class="tab" data-st="ongoing">▶ Ongoing</button><button class="tab" data-st="result">🏁 Results</button></div>
+ <div id="tList"></div>
+</div>
+
+<div id="detailPage" class="hidden"></div>
+
+<div id="matchesPage" class="hidden">
+ <div class="tabs"><button class="tab on" data-mt="up">Upcoming Matches</button><button class="tab" data-mt="my">My Matches</button></div>
+ <div id="mUp"></div><div id="mMy" class="hidden"></div>
+</div>
+
+<div id="walletPage" class="hidden">
+ <div class="card hero"><div class="sm" style="color:#c5d6ff">TOTAL BALANCE</div><div class="bal" id="tBal">₹0</div>
+  <div class="grid g3" style="margin-top:14px">
+   <div class="stat"><span>WIN</span><b id="wdr" class="gn">₹0</b></div>
+   <div class="stat"><span>DEPOSIT</span><b id="dep" style="color:#6fb0ff">₹0</b></div>
+   <div class="stat"><span>BONUS</span><b id="bon" style="color:#ffc83d">₹0</b></div>
+  </div>
+ </div>
+ <div class="grid"><button class="btn" data-go="wdPage">↗ WITHDRAWAL</button><button class="btn gr" data-go="addPage">＋ ADD MONEY</button></div>
+ <button class="btn dk f" data-go="histPage" style="text-align:left;padding:15px">📜 Transactions History  ›</button>
+</div>
+
+<div id="addPage" class="hidden">
+ <button class="btn dk sb" data-go="walletPage" style="display:inline-block">← WALLET</button>
+ <div class="card" style="margin-top:14px"><h2>ADD MONEY</h2><span class="tag">🔒 SECURE PAYMENT</span>
+  <p class="sm" style="margin:12px 0 0">Minimum ₹5 · Maximum ₹5000</p>
+  <label>DEPOSIT AMOUNT</label><input id="dAmt" type="number" min="5" max="5000" placeholder="Enter amount">
+  <button class="btn gr f" id="dBtn">ADD MONEY NOW</button><div id="dMsg" class="msg"></div>
+ </div>
+ <div class="card"><h2>DEPOSIT HISTORY</h2><div id="ordersList">Loading...</div></div>
+</div>
+
+<div id="wdPage" class="hidden">
+ <button class="btn dk sb" data-go="walletPage" style="display:inline-block">← WALLET</button>
+ <div class="card" style="margin-top:14px"><h2>WITHDRAW WINNINGS</h2><span class="tag">🔐 SECURE WITHDRAWAL</span>
+  <div class="grid" style="margin-top:14px"><div class="stat"><span>AVAILABLE (WIN)</span><b id="wdBal" class="gn">₹0</b></div><div class="stat"><span>LIMIT</span><b>₹10–₹50K</b></div></div>
+  <div class="note" style="margin-top:14px">Only withdrawable winnings can be withdrawn. Deposit and bonus balances are not eligible. Maximum 5 pending requests.</div>
+  <label>AMOUNT (₹)</label><input id="wdAmt" type="number" min="10" max="50000" step="0.01" placeholder="Enter amount">
+  <label>PAYOUT METHOD</label><select id="wdMethod"><option value="upi">UPI ID</option><option value="bank">Bank Account</option></select>
+  <div id="wdUpiF"><label>UPI ID</label><input id="wdUpi" placeholder="example@upi"></div>
+  <div id="wdBankF" class="hidden">
+   <label>ACCOUNT HOLDER NAME</label><input id="wdHolder" placeholder="Account holder name">
+   <label>ACCOUNT NUMBER</label><input id="wdAcc" inputmode="numeric" placeholder="Account number">
+   <label>IFSC CODE</label><input id="wdIfsc" autocapitalize="characters" placeholder="IFSC">
+   <label>BANK NAME</label><input id="wdBank" placeholder="Bank name">
+   <label>STATE</label><input id="wdState" placeholder="State">
+  </div>
+  <label>LOGIN PASSWORD</label><input id="wdPw" type="password" placeholder="Confirm your password">
+  <button class="btn f" id="wdBtn">SUBMIT WITHDRAWAL</button><div id="wdMsg" class="msg"></div>
+ </div>
+ <div class="card"><h2>WITHDRAWAL HISTORY</h2><div id="wdItems">Loading...</div></div>
+</div>
+
+<div id="histPage" class="hidden">
+ <button class="btn dk sb" data-go="walletPage" style="display:inline-block">← WALLET</button>
+ <div class="sec"><h2>TRANSACTIONS HISTORY</h2></div>
+ <div id="histList">Loading...</div>
+</div>
+
+<div id="profilePage" class="hidden">
+ <div class="card hero c"><div class="av" id="pAv">P</div><h1 id="pFull" style="font-size:18px;margin:0">-</h1><p id="pUser" style="margin:4px 0 0">-</p></div>
+ <div class="grid">
+  <div class="stat"><span>MATCHES PLAYED</span><b id="pMat">0</b></div>
+  <div class="stat"><span>TOTAL KILLS</span><b id="pKill" style="color:#ff8097">0</b></div>
+  <div class="stat"><span>TOTAL WIN</span><b id="pWin" class="gn">₹0</b></div>
+  <div class="stat"><span>TOTAL BALANCE</span><b id="pBal" style="color:#ffc83d">₹0</b></div>
+ </div>
+ <div class="card" style="margin-top:16px"><h2>FAIR PLAY RULES</h2><details><summary>📜 Read Fair Play Rules</summary><div class="rule" id="rulesTxt" style="margin-top:10px">Loading...</div></details></div>
+ <button class="btn gr f" data-go="supportPage" style="margin:0 0 4px">💬 CONTACT US</button>
+ <button class="btn rd f" id="logoutBtn">LOGOUT</button>
+</div>
+
+<div id="supportPage" class="hidden">
+ <div class="card hero"><span class="tag">💬 HELP CENTER</span><h1>CONTACT US</h1><p>Tap an option below. Our Max Arena team will help you.</p></div>
+ <div class="card">
+  <a class="btn wa sup" id="waL" target="_blank" rel="noopener" style="margin-top:0"><span>🟢</span><div>WhatsApp Support<small>+91 86778 34761</small></div></a>
+  <a class="btn tg sup" id="tgL" target="_blank" rel="noopener"><span>✈️</span><div>Telegram Support<small>@maxarena512</small></div></a>
+  <a class="btn pu sup" id="chL" target="_blank" rel="noopener"><span>📢</span><div>Telegram Channel<small>Join for updates &amp; room alerts</small></div></a>
+ </div>
+</div>
+
+</section>
+</main>
+
+<nav class="hidden" id="nav">
+ <button class="on" data-p="homePage listPage"><i>🏠</i>Home</button>
+ <button data-p="matchesPage"><i>🏆</i>Matches</button>
+ <button data-p="walletPage addPage wdPage histPage"><i>👛</i>Wallet</button>
+ <button data-p="profilePage supportPage"><i>👤</i>Profile</button>
+</nav>
+
+<script>
+'use strict';
+/* ===== CONFIG ===== */
+const AUTH="https://fk-games.onrender.com",PAY="https://hunter-arena.onrender.com",TOUR="https://hunter-turnament.onrender.com",WD="https://withdrawal-uvtk.onrender.com";
+const WA_NO="918677834761",TG_USER="maxarena512",TG_CH="https://t.me/YOUR_CHANNEL_USERNAME",HELP="Hello Max Arena Team, I need help";
+const K_TOK="ha_access_token",K_CRED="ha_login_details";
+const PAGES=["homePage","listPage","detailPage","matchesPage","walletPage","addPage","wdPage","histPage","profilePage","supportPage"];
+
+/* ===== HELPERS ===== */
+const ls={get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},del:k=>{try{localStorage.removeItem(k)}catch(e){}}};
+let token=ls.get(K_TOK)||"",cur="homePage",from="homePage",curMode=null,curSt="upcoming",mt="up",timer=null,busy=false,rp=null,lt=0,rulesOk=false,lastUserSig="",homeSig="",tourSig="",upSig="",mySig="";
+const $=id=>document.getElementById(id),on=(id,f)=>{const e=$(id);if(e)e.onclick=f},sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const money=v=>"₹"+Number(v||0).toLocaleString("en-IN",{maximumFractionDigits:2});
+const fmt=t=>t?new Date(Number(t)*1000).toLocaleString():"-";
+function el(t,c,x){const n=document.createElement(t);if(c)n.className=c;if(x!==undefined)n.textContent=String(x??"");return n}
+const row=(p,a,b)=>{const r=el("div","row");r.append(el("span","",a),el("b","",b??"-"));p.append(r)};
+function toast(m,bad){const e=el("div","toast"+(bad?" bad":""),m);document.body.append(e);setTimeout(()=>e.remove(),3200)}
+function msg(id,t,c){const e=$(id);if(e){e.textContent=t;e.className="msg "+(c||"")}}
+const boot=v=>$("boot").classList.toggle("hidden",!v);
+const stLabel=s=>String(s==="ongoing"?"LIVE":s||"").toUpperCase();
+const fill=(id,list,empty)=>$(id).replaceChildren(...(list.length?list:[el("div","empty",empty)]));
+function etaTxt(ts,st){
+ if(st==="ongoing")return "🔴 Live now";
+ const s=Math.floor(Number(ts)-Date.now()/1000);
+ if(!(s>0))return "⏳ Starting soon";
+ const d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60);
+ return "🕒 Starts in "+(d?d+"d "+h+"h":h?h+"h "+m+"m":m+"m "+s%60+"s");
+}
+setInterval(()=>document.querySelectorAll("[data-ts]").forEach(e=>{e.textContent=etaTxt(e.dataset.ts,e.dataset.st)}),1000);
+
+/* ===== API (auto re-login when token expires) ===== */
+async function raw(base,path,o={}){
+ const h={...(o.headers||{})};
+ if(token&&!o.login)h.Authorization="Bearer "+token;
+ if(o.body!==undefined)h["Content-Type"]="application/json";
+ let r,d;
+ try{r=await fetch(base+path,{...o,headers:h})}catch(e){throw new Error("Connection lost. Check internet and try again.")}
+ try{d=await r.json()}catch(e){throw new Error("Invalid server response.")}
+ if(r.status===401&&base!==PAY&&!o.login){const x=new Error("Session expired.");x.auth=true;throw x}
+ if(!r.ok||d.ok===false)throw new Error(d.error||"Request failed ("+r.status+")");
+ return d;
+}
+function setTok(t){token=t;ls.set(K_TOK,t)}
+function reAuth(){
+ if(rp)return rp;
+ rp=(async()=>{
+  let c=null;try{c=JSON.parse(ls.get(K_CRED))}catch(e){}
+  if(!c)return false;
+  for(let i=0;i<3;i++){
+   try{const d=await raw(AUTH,"/login",{method:"POST",body:JSON.stringify(c),login:1});if(d.access_token){setTok(d.access_token);return true}}catch(e){}
+   if(i<2)await sleep(1500);
+  }
+  return false;
+ })();
+ rp.finally(()=>{rp=null});
+ return rp;
+}
+async function api(base,path,o){
+ try{return await raw(base,path,o)}
+ catch(e){
+  if(!e.auth)throw e;
+  if(await reAuth())return raw(base,path,o);
+  logout("Connection lost. Please login again.");
+  throw e;
+ }
+}
+
+/* ===== AUTH ===== */
+function showAuth(w){
+ boot(0);$("auth").classList.remove("hidden");
+ ["app","nav","hBal","hSup"].forEach(i=>$(i).classList.add("hidden"));
+ $("hName").textContent="Login to play";
+ $("loginBox").classList.toggle("hidden",w!=="login");$("regBox").classList.toggle("hidden",w!=="register");
+}
+function showApp(){
+ boot(0);$("auth").classList.add("hidden");
+ ["app","nav","hBal","hSup"].forEach(i=>$(i).classList.remove("hidden"));
+ showPage("homePage");
+}
+function logout(note){
+ clearInterval(timer);
+ let c=null;try{c=JSON.parse(ls.get(K_CRED))}catch(e){}
+ ls.del(K_TOK);ls.del(K_CRED);token="";curMode=null;
+ if(c&&c.identifier&&note)$("lid").value=c.identifier;
+ $("lpw").value="";showAuth("login");msg("loginMsg",note||"",note?"err":"");
+}
+async function sign(reg){
+ const btn=$(reg?"regBtn":"loginBtn"),mid=reg?"regMsg":"loginMsg",chk=$(reg?"rage":"lage");
+ if(!chk.checked){msg(mid,"Please confirm that you are 18+.","err");return}
+ const p=reg?{full_name:$("rn").value.trim(),username:$("ru").value.trim(),phone:$("rp").value.trim(),email:$("re").value.trim(),password:$("rw").value}:{identifier:$("lid").value.trim(),password:$("lpw").value};
+ btn.disabled=true;msg(mid,reg?"Creating account...":"Logging in...");
+ try{
+  const d=await raw(AUTH,reg?"/register":"/login",{method:"POST",body:JSON.stringify(p),login:1});
+  if(!d.access_token)throw new Error("Access token missing.");
+  setTok(d.access_token);
+  ls.set(K_CRED,JSON.stringify({identifier:reg?p.username:p.identifier,password:p.password}));
+  await loadProfile();
+ }catch(e){msg(mid,e.message,"err")}
+ finally{btn.disabled=!chk.checked}
+}
+
+/* ===== PROFILE ===== */
+function paint(u){
+ const fn=String(u.full_name||u.username||"Player");
+ $("hName").textContent=fn.split(" ")[0];
+ $("pAv").textContent=fn[0].toUpperCase();$("pFull").textContent=u.full_name||"-";$("pUser").textContent="@"+(u.username||"-");
+ [["dep",u.deposit],["wdr",u.withdrawable],["bon",u.bonus],["tBal",u.total_balance],["pBal",u.total_balance],["wdBal",u.withdrawable]].forEach(([i,v])=>$(i).textContent=money(v));
+ $("pMat").textContent=u.matches_played||0;
+ $("hBal").textContent=money(u.total_balance)+" ＋";
+}
+async function refresh(){const d=await api(AUTH,"/me");if(!d.user)throw new Error("User data missing.");const sig=JSON.stringify(d.user);if(sig!==lastUserSig){paint(d.user);lastUserSig=sig}}
+async function loadProfile(){
+ for(let i=0;i<3;i++){
+  try{await refresh();showApp();lastOrder();startRefresh();return}
+  catch(e){if(e.auth)return;if(i<2)await sleep(2000)}
+ }
+ logout("Connection lost. Please login again.");
+}
+function startRefresh(){clearInterval(timer);timer=setInterval(()=>{if(document.visibilityState==="visible")tick()},15000)}
+async function tick(){
+ if(!token||busy)return;busy=true;
+ try{await refresh();lastOrder();if(cur==="homePage")await loadHome(true);else if(cur==="listPage")await loadTours(true);else if(cur==="matchesPage"){if(mt==="up")await loadUp(true);else await loadMy(true)}}catch(e){}
+ busy=false;
+}
+async function loadStats(){
+ try{
+  const ms=(await api(TOUR,"/api/me/matches")).matches||[];
+  $("pKill").textContent=ms.reduce((a,x)=>a+Number(x.kills||0),0);
+  $("pWin").textContent=money(ms.reduce((a,x)=>a+Number(x.prize||0),0));
+  if(ms.length&&$("pMat").textContent==="0")$("pMat").textContent=ms.length;
+ }catch(e){}
+}
+async function loadRules(){
+ if(rulesOk)return;const t=$("rulesTxt");
+ try{const r=await fetch("rules.txt",{cache:"no-cache"});if(!r.ok)throw 0;t.textContent=(await r.text()).trim()||"Rules will be updated soon.";rulesOk=true}
+ catch(e){t.textContent="Could not load rules. Please try again later."}
+}
+
+/* ===== NAVIGATION ===== */
+function showPage(p){
+ cur=p;PAGES.forEach(i=>$(i).classList.toggle("hidden",i!==p));
+ const nb=[...document.querySelectorAll("nav button")],hit=nb.find(b=>b.dataset.p.split(" ").includes(p));
+ if(hit)nb.forEach(b=>b.classList.toggle("on",b===hit));
+ scrollTo(0,0);
+ const f={homePage:loadHome,matchesPage:()=>setMt(mt),walletPage:()=>refresh().catch(()=>{}),addPage:loadOrders,wdPage:()=>{refresh().catch(()=>{});loadWd()},histPage:loadHist,profilePage:()=>{loadRules();loadStats()}}[p];
+ if(f)f();
+}
+function setSt(s){curSt=s;homeSig="";tourSig="";document.querySelectorAll("[data-st]").forEach(b=>b.classList.toggle("on",b.dataset.st===s));if(cur==="listPage")loadTours();else if(cur==="homePage")loadHome()}
+function setMt(k){
+ mt=k;document.querySelectorAll("[data-mt]").forEach(b=>b.classList.toggle("on",b.dataset.mt===k));
+ $("mUp").classList.toggle("hidden",k!=="up");$("mMy").classList.toggle("hidden",k!=="my");
+ if(k==="up")loadUp();else loadMy();
+}
+
+/* ===== HOME ===== */
+function tile(m,n){
+ const t=el("div","gt"),i=el("div","gi");
+ if(m.logo_url){const im=el("img");im.src=m.logo_url;im.alt=m.name||"";im.onerror=()=>{im.remove();i.textContent="🎮"};i.append(im)}else i.textContent="🎮";
+ t.append(el("span","cnt"+(n?"":" z"),n||0),i,document.createTextNode(m.name||"Game"));
+ t.onclick=()=>openMode(m);return t;
+}
+function jCard(t){
+ const c=el("div","item jc"),m=el("div","im"),v=el("button","btn sb","VIEW"),e=el("div","meta");
+ e.dataset.ts=t.start_time;e.dataset.st=t.status;e.textContent=etaTxt(t.start_time,t.status);
+ m.append(el("div","it",(t.mode&&t.mode.name)||t.mode_name||"Tournament"),el("div","gold",t.prize_pool!=null?money(t.prize_pool)+" Prize Pool":"Entry "+money(t.entry_fee)),e);
+ c.append(el("div","ico","🏆"),m,v);c.onclick=()=>openTour(t.id);return c;
+}
+async function loadHome(silent=false){
+ try{
+  const [md,mine]=await Promise.all([api(TOUR,"/api/modes"),api(TOUR,"/api/me/tournaments").catch(()=>({}))]),ms=md.modes||[];
+  const cs=await Promise.all(ms.map(async m=>{const counts=await Promise.all(["upcoming","ongoing","result"].map(st=>api(TOUR,"/api/modes/"+encodeURIComponent(m.id)+"/tournaments?status="+st).then(d=>(d.tournaments||[]).length).catch(()=>0)));return counts.reduce((a,n)=>a+n,0)}));
+  const all=mine.tournaments||[],filtered=all.filter(t=>t.status===curSt).sort((a,b)=>(a.start_time||0)-(b.start_time||0));
+  const sig=JSON.stringify({modes:ms.map((m,i)=>[m.id,m.name,m.logo_url,cs[i]]),matches:filtered});
+  if(silent&&sig===homeSig)return;
+  homeSig=sig;
+  fill("gGrid",ms.map((m,i)=>tile(m,cs[i])),"No games available.");
+  fill("hNext",filtered.map(t=>jCard(t)),"No "+curSt+" matches found.");
+  const h=document.querySelector('#homePage .sec h2');if(h)h.textContent=curSt==="upcoming"?"Upcoming Matches":curSt==="ongoing"?"Ongoing Matches":"Match Results";
+ }catch(e){if(!silent)$("gGrid").textContent=e.message}
+}
+
+/* ===== MATCHES ===== */
+
+async function loadUp(silent=false){
+ try{
+  const rs=((await api(TOUR,"/api/me/tournaments")).tournaments||[]).filter(t=>t.status==="upcoming"||t.status==="ongoing").sort((a,b)=>a.start_time-b.start_time);
+  const sig=JSON.stringify(rs);if(!silent||sig!==upSig){upSig=sig;fill("mUp",rs.map(t=>jCard(t)),"You have not joined any upcoming match.");}
+ }catch(e){$("mUp").textContent=e.message}
+}
+async function loadMy(silent=false){
+ try{
+  const rs=(await api(TOUR,"/api/me/matches")).matches||[];
+  const sig=JSON.stringify(rs);if(silent&&sig===mySig)return;mySig=sig;
+  fill("mMy",rs.map(x=>{
+   const b=el("div","item"),h=el("div","ih"),m=el("div","im"),p=Number(x.prize||0);
+   m.append(el("div","it",x.in_game_name||"Match"),el("div","meta","🎯 "+(x.kills||0)+" kills · Rank #"+(x.rank||"-")),el("div","meta","Entry "+money(x.entry_fee)+" · "+fmt(x.at)));
+   h.append(m,el("b",(p>0?"gn":"mu")+" amt",p>0?"+"+money(p):money(0)));b.append(h);return b;
+  }),"No completed matches yet.");
+ }catch(e){$("mMy").textContent=e.message}
+}
+
+/* ===== TOURNAMENTS ===== */
+function openMode(m){tourSig="";curMode=m;$("modeName").textContent=m.name||"TOURNAMENTS";showPage("listPage");loadTours()}
+function tCard(t){
+ const b=el("div","item tcard"),u=t.thumb_url||(curMode&&curMode.logo_url),go=!t.joined&&t.status==="upcoming";
+ if(u){
+  const im=el("img","tournament-cover");im.src=u;im.alt="Tournament banner";
+  im.onerror=()=>{im.remove();const ph=el("div","tournament-cover tcover-empty","MAX ARENA");b.insertBefore(ph,b.firstChild)};
+  b.append(im);
+ }else b.append(el("div","tournament-cover tcover-empty","MAX ARENA"));
+ const info=el("div","tcard-info"),top=el("div","tcard-prize");
+ top.append(el("div","gold",money(t.prize_pool)+" Prize Pool"));
+ info.append(top,
+  el("div","meta","🎟 Entry "+money(t.entry_fee)+(t.per_kill_prize?" · 🎯 "+money(t.per_kill_prize)+"/kill":"")),
+  el("div","meta","🕒 "+fmt(t.start_time)));
+ const cap=Number(t.capacity||0),j=Number(t.joined_count||0),bar=el("div","bar"),f=el("i");
+ f.style.width=(cap?Math.min(100,j/cap*100):0)+"%";bar.append(f);
+ info.append(bar,el("div","meta",j+"/"+cap+" players · "+(t.slots_left??0)+" slots left"));
+ (t.tags||[]).forEach(g=>{const p=el("span","pill",g);p.style.margin="6px 4px 0 0";info.append(p)});
+ if(t.note)info.append(el("div","meta",t.note));
+ if(t.joined)info.append(el("div","meta gn","✓ YOU HAVE JOINED"));
+ const v=el("button","btn sb tcard-join"+(go?" gr":""),go?"JOIN":"VIEW");
+ v.onclick=e=>{e.stopPropagation();openTour(t.id)};
+ info.append(v);b.append(info);
+ b.onclick=()=>openTour(t.id);return b;
+}
+async function loadTours(silent=false){
+ if(!curMode)return;
+ const l=$("tList"),my=++lt;if(!silent)l.textContent="Loading tournaments...";
+ try{
+  const rs=(await api(TOUR,"/api/modes/"+encodeURIComponent(curMode.id)+"/tournaments?status="+curSt)).tournaments||[];
+  if(my!==lt)return;
+  const sig=JSON.stringify({mode:curMode.id,status:curSt,data:rs});
+  if(silent&&sig===tourSig)return;
+  tourSig=sig;fill("tList",rs.map(tCard),"No "+curSt+" tournaments found.");
+ }catch(e){if(my===lt&&!silent)l.textContent=e.message}
+}
+function slotsUI(c,slots,ss,sm,pick){
+ c.textContent="";
+ if(!Array.isArray(slots)||!slots.length){c.append(el("div","empty","Slot information unavailable."));return}
+ const w=el("div","sw");
+ slots.forEach(s=>{
+  const k=el("div","slot"),h=el("div","sh"),ms=s.members||[],sl=ss!==null&&Number(ss)===Number(s.slot);
+  h.append(el("b","","SLOT "+s.label),el("span","",s.taken?"FULL":"AVAILABLE"));k.append(h);
+  if(ms.length){
+   const g=el("div","mg");
+   ms.forEach(m=>{
+    const sel=sl&&sm===m.code,b=el("button","mb"+(m.taken?" tk":"")+(sel?" sel":""));
+    b.disabled=!!m.taken;b.append(document.createTextNode(m.label),el("small","",m.taken?"OCCUPIED":sel?"SELECTED":"AVAILABLE"));
+    b.onclick=()=>pick(s.slot,m.code);g.append(b);
+   });
+   k.append(g);
+  }else{
+   const b=el("button","mb"+(s.taken?" tk":"")+(sl?" sel":""));
+   b.disabled=!!s.taken;b.append(document.createTextNode("SLOT "+s.label),el("small","",s.taken?"OCCUPIED":sl?"SELECTED":"AVAILABLE"));
+   b.onclick=()=>pick(s.slot,null);k.append(b);
+  }
+  w.append(k);
+ });
+ c.append(w);
+}
+async function openTour(id){
+ if(cur!=="detailPage")from=cur;
+ showPage("detailPage");const box=$("detailPage");box.textContent="Loading tournament details...";
+ const back=el("button","btn dk sb","← BACK");
+ back.style.display="inline-block";back.onclick=()=>{showPage(from);if(from==="listPage")loadTours()};
+ try{
+  const t=(await api(TOUR,"/api/tournaments/"+encodeURIComponent(id))).tournament;
+  if(!t)throw new Error("Tournament not found.");
+  box.textContent="";box.append(back);
+  const c=el("div","card"),hd=el("div","sec");c.style.marginTop="14px";hd.style.marginTop="0";
+  hd.append(el("h2","","TOURNAMENT DETAILS"),el("span","pill "+(t.status||""),stLabel(t.status)));c.append(hd);
+  const g=el("div","dg");
+  [["Entry Fee",money(t.entry_fee)],["Prize Pool",money(t.prize_pool)],["Per Kill",money(t.per_kill_prize)],["Start Time",fmt(t.start_time)],["Players",(t.joined_count||0)+"/"+(t.capacity||0)],["Slots Left",t.slots_left??0],["Total Teams",t.total_teams],["Players / Team",t.players_per_team]].forEach(([a,b])=>{const d=el("div","dc");d.append(el("span","",a),el("b","",b??"-"));g.append(d)});
+  c.append(g);
+  if(t.tags&&t.tags.length)c.append(el("div","meta","Tags: "+t.tags.join(", ")));
+  if(t.note)c.append(el("p","meta",t.note));
+  if(t.cancel_reason)c.append(el("p","err","Cancellation reason: "+t.cancel_reason));
+  if(t.rules)c.append(el("h3","","MATCH RULES"),el("div","rule",t.rules));
+  if(t.joined){const r=el("div","item");r.append(el("h3","","YOUR ROOM DETAILS"));row(r,"Room ID",t.room_id||"COMING SOON");row(r,"Room Password",t.room_password||"COMING SOON");c.append(r)}
+  if(t.status==="upcoming"&&(!t.joined||Number(t.my_players||0)<Number(t.players_per_team||1))){
+   const j=el("button","btn gr f",t.joined?"＋ REGISTER ANOTHER MEMBER":"⚔ JOIN TOURNAMENT");j.onclick=()=>joinTour(t);c.append(j);
+  }else if(t.joined)c.append(el("p","ok","✓ YOU HAVE JOINED THIS TOURNAMENT"));
+  box.append(c);
+  if(t.status==="upcoming"&&Array.isArray(t.slots)){
+   const sc=el("div","card"),hl=el("div","");
+   sc.append(el("h2","","TEAM SLOT STATUS"),el("p","sm","Green = available · Grey = occupied"),hl);slotsUI(hl,t.slots,null,null,()=>{});box.append(sc);
+  }
+  if(Array.isArray(t.results)&&t.results.length){
+   const rc=el("div","card");rc.append(el("h2","","🏆 TOURNAMENT RESULTS"));
+   t.results.forEach((r,i)=>{const w=el("div","row");w.append(el("span","",(i+1)+". "+(r.in_game_name||"Player")),el("b","","#"+r.rank+" · "+r.kills+" Kills · "+money(r.prize)));rc.append(w)});
+   box.append(rc);
+  }
+ }catch(e){box.textContent="";box.append(back,el("div","empty",e.message))}
+}
+function joinTour(t){
+ const slots=t.slots||[],team=Number(t.players_per_team||1)>1;
+ if(!slots.length){toast("No slot information available. Refresh tournament.",true);return}
+ const ov=el("div","ov"),p=el("div","dlg"),inp=el("input"),sel=el("div","item"),holder=el("div",""),er=el("div","msg"),act=el("div","grid"),cn=el("button","btn dk","CANCEL"),ok=el("button","btn gr","CONFIRM JOIN");
+ inp.placeholder="Enter your in-game name";inp.maxLength=24;inp.value=ls.get("ha_ign")||"";
+ let cs=null,cm=null;
+ const bad=x=>{er.className="msg err";er.textContent=x};
+ const showSel=()=>{sel.textContent="";sel.append(el("b","","YOUR SELECTION"),el("div","meta",cs===null?"No slot selected":"Slot: "+cs+(cm?" · Member: "+cm:"")))};
+ const pick=(s,m)=>{cs=s;cm=m;showSel();slotsUI(holder,slots,cs,cm,pick)};
+ showSel();slotsUI(holder,slots,null,null,pick);act.append(cn,ok);
+ p.append(el("span","tag","⚔ BATTLE REGISTRATION"),el("h2","","JOIN TOURNAMENT"),el("p","sm","Entry fee: "+money(t.entry_fee)),el("label","","IN-GAME NAME"),inp,el("div","note",team?"Select a team slot and an available member code.":"Solo tournament: select an available slot number."),sel,holder,er,act);
+ ov.append(p);document.body.append(ov);cn.onclick=()=>ov.remove();
+ ok.onclick=async()=>{
+  const n=inp.value.trim();
+  if(n.length<2||n.length>24)return bad("In-game name must be 2-24 characters.");
+  if(cs===null)return bad("Please select an available slot.");
+  if(team&&!cm)return bad("Please select an available member.");
+  ok.disabled=true;er.className="msg";er.textContent="Registering your player...";
+  try{
+   const b={in_game_name:n,slot:Number(cs)};if(team)b.member=cm;
+   const d=await api(TOUR,"/api/tournaments/"+encodeURIComponent(t.id)+"/join",{method:"POST",body:JSON.stringify(b)});
+   ls.set("ha_ign",n);ov.remove();toast("Joined successfully! Slot: "+((d.join||{}).slot_label||cs));
+   await refresh();openTour(t.id);
+  }catch(e){ok.disabled=false;bad(e.message)}
+ };
+}
+
+/* ===== WALLET: ADD MONEY / WITHDRAW / HISTORY ===== */
+async function createOrder(){
+ const a=Number($("dAmt").value),b=$("dBtn");
+ if(!Number.isInteger(a)||a<5||a>5000){msg("dMsg","Enter an amount between ₹5 and ₹5000.","err");return}
+ b.disabled=true;msg("dMsg","Creating payment order...");
+ try{
+  const d=await api(PAY,"/api/order",{method:"POST",body:JSON.stringify({amount:a})}),o=d.order||d;
+  if(!o.url)throw new Error("Payment URL not received.");
+  if(o.order_id)ls.set("ha_last_order",o.order_id);
+  msg("dMsg","Opening payment page...","ok");location.href=o.url;
+ }catch(e){msg("dMsg",e.message,"err")}
+ finally{b.disabled=false}
+}
+async function loadOrders(){
+ try{
+  const rs=((await api(PAY,"/api/orders")).orders||[]).slice().reverse();
+  fill("ordersList",rs.map(o=>{
+   const s=String(o.status||"pending").toLowerCase(),b=el("div","item"),h=el("div","ih"),m=el("div","im"),r=el("div","rt");
+   m.append(el("b","",o.order_id||"Payment order"),el("div","meta",fmt(o.created_at)+(o.utr?" · UTR: "+o.utr:"")));
+   r.append(el("b",(s==="success"?"gn":"mu")+" amt",(s==="success"?"+":"")+money(o.amount)),el("div","pill "+s,s.toUpperCase()));
+   h.append(m,r);b.append(h);return b;
+  }),"No deposits yet.");
+ }catch(e){$("ordersList").textContent=e.message}
+}
+async function lastOrder(){
+ const id=ls.get("ha_last_order");if(!id)return;
+ try{
+  const d=await api(PAY,"/api/order/"+encodeURIComponent(id)),o=d.order||d;
+  if(o.status==="success"){ls.del("ha_last_order");toast("Payment successful. Wallet updated.");await refresh();if(cur==="addPage")loadOrders()}
+  else if(o.status==="failed"){ls.del("ha_last_order");toast("Payment failed or expired.",true);if(cur==="addPage")loadOrders()}
+ }catch(e){}
+}
+function wdToggle(){const u=$("wdMethod").value==="upi";$("wdUpiF").classList.toggle("hidden",!u);$("wdBankF").classList.toggle("hidden",u)}
+async function wdSubmit(){
+ const btn=$("wdBtn"),method=$("wdMethod").value,amount=Number($("wdAmt").value),password=$("wdPw").value,p={amount,method,password};
+ if(method==="upi")p.upi_id=$("wdUpi").value.trim();
+ else Object.assign(p,{account_holder:$("wdHolder").value.trim(),account_number:$("wdAcc").value.trim(),ifsc:$("wdIfsc").value.trim(),bank_name:$("wdBank").value.trim(),state:$("wdState").value.trim()});
+ if(!Number.isFinite(amount)||amount<10||amount>50000){msg("wdMsg","Amount must be between ₹10 and ₹50,000.","err");return}
+ if(!password){msg("wdMsg","Enter your login password.","err");return}
+ btn.disabled=true;msg("wdMsg","Submitting your request securely...");
+ try{
+  const d=await api(WD,"/api/withdraw",{method:"POST",body:JSON.stringify(p)});
+  msg("wdMsg",d.message||"Withdrawal request submitted.","ok");toast(d.existing?"Existing request found.":"Withdrawal request submitted.");
+  $("wdPw").value="";await refresh();await loadWd();
+ }catch(e){msg("wdMsg",e.message,"err")}
+ finally{btn.disabled=false}
+}
+async function loadWd(){
+ try{
+  const rs=(await api(WD,"/api/withdrawals")).withdrawals||[];
+  fill("wdItems",rs.map(w=>{
+   const b=el("div","item"),h=el("div","ih"),m=el("div","im"),r=el("div","rt"),s=String(w.status||"pending").toLowerCase(),neg=!/^(rejected|failed|cancelled)$/.test(s);
+   m.append(el("b","",String(w.method||"").toUpperCase()+" · "+(w.payout||"Payout")),el("div","meta","Request ID: "+(w.order_id||"-")),el("div","meta","Requested: "+fmt(w.created_at)));
+   r.append(el("b",(neg?"rdc":"mu")+" amt",(neg?"-":"")+money(w.amount)),el("div","pill "+s,s.toUpperCase()));
+   h.append(m,r);b.append(h);
+   if(w.reason)b.append(el("div","meta","Reason: "+w.reason));
+   if(w.note)b.append(el("div","meta",w.note));
+   if(w.processed_at)b.append(el("div","meta","Processed: "+fmt(w.processed_at)));
+   return b;
+  }),"No withdrawal requests yet.");
+ }catch(e){$("wdItems").textContent=e.message}
+}
+/* debit (money cut) = "-" red, credit (money added) = "+" green */
+const isDr=h=>{
+ if(Number(h.amount)<0)return true;
+ const d=String(h.direction||h.dir||"").toLowerCase();
+ if(/^(debit|dr|out)$/.test(d))return true;if(/^(credit|cr|in)$/.test(d))return false;
+ const t=String(h.type||"");
+ return !/refund|revers|return|cashback/i.test(t)&&/withdraw|join|entry|fee|debit|deduct|spent|purchase|penalty|charge/i.test(t);
+};
+async function loadHist(){
+ try{
+  const rs=(await api(TOUR,"/api/me/history")).history||[];
+  fill("histList",rs.map(h=>{
+   const dr=isDr(h),b=el("div","item"),t=el("div","ih"),m=el("div","im");
+   m.append(el("b","",String(h.type||"transaction").replace(/_/g," ").toUpperCase()),el("div","meta",h.note||"-"),el("div","meta",fmt(h.at)));
+   t.append(m,el("b",(dr?"rdc":"gn")+" amt",(dr?"-":"+")+money(Math.abs(Number(h.amount||0)))));b.append(t);return b;
+  }),"No transaction history.");
+ }catch(e){$("histList").textContent=e.message}
+}
+
+/* ===== EVENTS ===== */
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>showPage(b.dataset.p.split(" ")[0]));
+document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>showPage(b.dataset.go));
+document.querySelectorAll("[data-st]").forEach(b=>b.onclick=()=>setSt(b.dataset.st));
+document.querySelectorAll("[data-mt]").forEach(b=>b.onclick=()=>setMt(b.dataset.mt));
+[["lage","loginBtn"],["rage","regBtn"]].forEach(([c,b])=>{$(c).onchange=()=>{$(b).disabled=!$(c).checked}});
+on("loginBtn",()=>sign(0));on("regBtn",()=>sign(1));
+on("toReg",()=>showAuth("register"));on("toLogin",()=>showAuth("login"));
+on("seeAll",()=>{mt="up";showPage("matchesPage")});
+on("dBtn",createOrder);on("wdBtn",wdSubmit);
+on("logoutBtn",()=>{logout();toast("Logged out successfully.")});
+$("wdMethod").onchange=wdToggle;
+$("waL").href="https://wa.me/"+WA_NO+"?text="+encodeURIComponent(HELP);
+$("tgL").href="https://t.me/"+TG_USER+"?text="+encodeURIComponent(HELP);
+$("chL").href=TG_CH;
+document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"&&token)tick()});
+
+/* ===== START (saved token -> auto login; expired -> saved details, 3 tries) ===== */
+wdToggle();
+if(token||ls.get(K_CRED)){$("auth").classList.add("hidden");boot(1);loadProfile()}
+else showAuth("login");
+</script>
+</body>
+</html>
